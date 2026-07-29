@@ -104,7 +104,19 @@
   .awave h1,.awave h2,.awave h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--sans-display);letter-spacing:-.01em;}
   .awave h2{font-size:clamp(26px,3.2vw,38px);}
   .awave p{margin:0;}
-  .awave section{padding:96px 0;border-bottom:1px solid var(--line-soft);position:relative;}
+  .awave section{
+    padding:96px 0;border-bottom:1px solid var(--line-soft);position:relative;
+    background:
+      radial-gradient(ellipse 900px 520px at 18% -8%, rgba(240,149,74,0.07), transparent 62%),
+      radial-gradient(circle at 1px 1px, rgba(237,239,236,0.05) 1px, transparent 0) 0 0/28px 28px,
+      var(--void);
+  }
+  .awave section:nth-of-type(even){
+    background:
+      radial-gradient(ellipse 900px 520px at 82% -8%, rgba(70,201,160,0.07), transparent 62%),
+      radial-gradient(circle at 1px 1px, rgba(237,239,236,0.05) 1px, transparent 0) 0 0/28px 28px,
+      var(--void);
+  }
   .awave section:last-of-type{border-bottom:none;}
   .awave a{color:inherit;}
   .awave button,.awave .btn{font-family:var(--mono);font-size:13.5px;letter-spacing:.02em;cursor:pointer;}
@@ -213,6 +225,12 @@
   .awave .screen-bar .sdot{width:5px;height:5px;border-radius:50%;background:var(--line);flex:none;}
   .awave .agent-snippet{background:var(--void-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
   .awave .agent-snippet b{color:var(--ink);font-weight:600;}
+
+  /* ---------- real screenshots ---------- */
+  .awave .realshots-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;}
+  .awave .realshot{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);box-shadow:0 20px 50px -30px rgba(0,0,0,.7);}
+  .awave .realshot img{width:100%;display:block;}
+  .awave .realshot figcaption{padding:14px 16px;font-size:13px;color:var(--ink-dim);border-top:1px solid var(--line);}
 
   /* ---------- gate (approvals) ---------- */
   .awave .gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
@@ -349,6 +367,7 @@
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
     .awave .mini-screens{grid-template-columns:1fr;}
+    .awave .realshots-grid{grid-template-columns:1fr;}
     .awave .pnode{min-width:130px;}
     .awave .voice-msg{max-width:96%;}
     .awave .sticky-cta{display:flex;}
@@ -559,6 +578,24 @@
       <p style="margin-top:40px;text-align:center;">
         <a href="#agendar" class="btn-secondary">Quero saber se isso resolve o meu caso — de graça</a>
       </p>
+    </div>
+  </section>
+
+  <!-- PRINTS REAIS -->
+  <section class="realshots">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Isso já está rodando</p>
+      <h2>Não é protótipo. É print de verdade do sistema, agora.</h2>
+      <div class="realshots-grid">
+        <figure class="realshot">
+          <img src="images/real-copy.jpg" alt="Tela real do Awave: Lia, a copywriter, escrevendo três ângulos diferentes para o mesmo post, com painel de chat sugerindo qual CTA priorizar.">
+          <figcaption>Lia escrevendo 3 ângulos diferentes pro mesmo post — e já perguntando qual CTA priorizar.</figcaption>
+        </figure>
+        <figure class="realshot">
+          <img src="images/real-design.jpg" alt="Tela real do Awave: Téo, o designer, com a arte final de um anúncio já gerada e marcada como Aprovada.">
+          <figcaption>Téo gerando a arte final do anúncio — já com o status "Aprovada".</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
