@@ -34,6 +34,7 @@
   /* Deliberate single-world dark treatment — Awave is presented as a live technical
      console, not a document. See note to user re: theme commitment. */
 
+  html,body{margin:0;background:var(--void);}
   .awave{background:var(--void);color:var(--ink);font-family:var(--sans-body);line-height:1.6;position:relative;}
   .awave *{box-sizing:border-box;}
   .awave img,.awave svg{max-width:100%;display:block;}
@@ -52,7 +53,7 @@
   .awave button,.awave .btn{font-family:var(--mono);font-size:13.5px;letter-spacing:.02em;cursor:pointer;}
   .awave :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 
-  .awave .topbar{padding:22px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line-soft);position:relative;z-index:2;}
+  .awave .topbar{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line-soft);position:sticky;top:0;z-index:50;background:var(--void);}
   .awave .logo{font-family:var(--sans-display);font-weight:700;letter-spacing:.06em;font-size:16px;display:flex;align-items:center;gap:9px;}
   .awave .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 2px var(--accent-soft),0 0 6px 1px var(--accent);}
   .awave .topbar .btn-ghost{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 16px;border-radius:var(--radius);font-family:var(--mono);font-size:12.5px;}
@@ -251,6 +252,7 @@
     font-size:12.5px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 50px -10px rgba(0,0,0,.6);
   }
   .awave .cookie-bar button{background:var(--accent);color:var(--accent-contrast);border:none;padding:8px 14px;border-radius:var(--radius);white-space:nowrap;font-family:var(--mono);font-weight:700;}
+  .awave .wa-float.behind-cookie{display:none;}
   .awave [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
   .awave [data-reveal].in{opacity:1;transform:none;}
   @media (prefers-reduced-motion: reduce){.awave [data-reveal]{opacity:1;transform:none;transition:none;}}
@@ -263,6 +265,7 @@
     .awave .step-visual{display:none;}
     .awave .sticky-cta{display:flex;}
     .awave .wa-float{bottom:88px;width:46px;height:46px;}
+    .awave .cookie-bar{bottom:82px;}
     .awave .wave-bg{height:280px;}
     table.compare{min-width:600px;}
   }
@@ -358,6 +361,32 @@
     </div>
   </section>
 
+  <!-- APROVAÇÕES -->
+  <section class="gate">
+    <div class="wrap gate-grid" data-reveal>
+      <div>
+        <p class="eyebrow">O freio central</p>
+        <h2 style="margin-bottom:20px;">Nenhum especialista age sozinho quando a ação não tem volta</h2>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação — ler uma métrica, listar um evento — roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real — criar, enviar, publicar, excluir — pára numa fila de aprovação antes de acontecer.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
+      </div>
+      <div class="gate-mock">
+        <p class="kind">tool_action · pendente</p>
+        <p class="req">Alan sugere: <b>criar tarefa de renovação de contrato</b> — vence em 5 dias, cliente "Distribuidora Ipê".</p>
+        <div class="gate-actions">
+          <button type="button" class="aprovar">Aprovar</button>
+          <button type="button" class="ajustar">Ajustar</button>
+          <button type="button" class="recusar">Recusar</button>
+        </div>
+        <ul class="gate-list">
+          <li><span>Lia · publicar peça de copy</span><span>pendente</span></li>
+          <li><span>Atendimento · responder Marcos R.</span><span>pendente</span></li>
+          <li><span>Secretária · criar 3 tarefas no ClickUp</span><span>aprovado</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- CONHEÇA O TIME -->
   <section class="team">
     <div class="wrap" data-reveal>
@@ -395,32 +424,9 @@
           <div class="agent-snippet">reunião <b>"Planejamento Q3"</b> · pronta · 3 tarefas</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- APROVAÇÕES -->
-  <section class="gate">
-    <div class="wrap gate-grid" data-reveal>
-      <div>
-        <p class="eyebrow">O freio central</p>
-        <h2 style="margin-bottom:20px;">Nenhum especialista age sozinho quando a ação não tem volta</h2>
-        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação — ler uma métrica, listar um evento — roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real — criar, enviar, publicar, excluir — pára numa fila de aprovação antes de acontecer.</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
-      </div>
-      <div class="gate-mock">
-        <p class="kind">tool_action · pendente</p>
-        <p class="req">Alan sugere: <b>criar tarefa de renovação de contrato</b> — vence em 5 dias, cliente "Distribuidora Ipê".</p>
-        <div class="gate-actions">
-          <button type="button" class="aprovar">Aprovar</button>
-          <button type="button" class="ajustar">Ajustar</button>
-          <button type="button" class="recusar">Recusar</button>
-        </div>
-        <ul class="gate-list">
-          <li><span>Lia · publicar peça de copy</span><span>pendente</span></li>
-          <li><span>Atendimento · responder Marcos R.</span><span>pendente</span></li>
-          <li><span>Secretária · criar 3 tarefas no ClickUp</span><span>aprovado</span></li>
-        </ul>
-      </div>
+      <p style="margin-top:40px;text-align:center;">
+        <a href="#agendar" class="btn-secondary">Quero ver esse time aplicado ao meu negócio</a>
+      </p>
     </div>
   </section>
 
@@ -559,14 +565,6 @@
       <h2>Antes de você perguntar</h2>
       <div class="faq-list">
         <details>
-          <summary>O Awave substitui minha agência de tráfego atual?</summary>
-          <p>Hoje, o Rui (especialista de tráfego) lê e diagnostica sua conta de Meta Ads em tempo real — detecta fadiga de criativo e vazamento de funil. Ele ainda não cria ou otimiza campanhas sozinho. O valor está no diagnóstico contínuo e na coordenação com copy e design — não estamos prometendo piloto automático de mídia paga.</p>
-        </details>
-        <details>
-          <summary>Funciona com Google Ads ou TikTok Ads?</summary>
-          <p>Hoje o foco é Meta Ads (Facebook e Instagram). Outras plataformas de anúncio ainda não têm profundidade real no sistema — preferimos ser honestos sobre isso a prometer algo que não entregamos ainda.</p>
-        </details>
-        <details>
           <summary>Preciso entender de tecnologia pra usar o Awave?</summary>
           <p>Não. Nossa equipe faz toda a instalação e configuração. Você conversa com seu time e aprova o que eles sugerem — o resto é com a gente.</p>
         </details>
@@ -575,12 +573,20 @@
           <p>Nenhuma ação de escrita acontece sem sua aprovação — você revisa, ajusta ou recusa antes de qualquer coisa virar realidade.</p>
         </details>
         <details>
+          <summary>Posso ativar só alguns especialistas, não o time todo?</summary>
+          <p>Sim. Cada cockpit é ativado conforme o agente correspondente é instalado — no Diagnóstico, definimos juntos quais especialistas fazem sentido pra você começar.</p>
+        </details>
+        <details>
           <summary>Preciso ter equipe própria de marketing?</summary>
           <p>Não necessariamente — o time de IA cobre boa parte da execução. Mas toda decisão importante continua passando por você (ou por quem você designar) na fila de aprovação.</p>
         </details>
         <details>
-          <summary>Posso ativar só alguns especialistas, não o time todo?</summary>
-          <p>Sim. Cada cockpit é ativado conforme o agente correspondente é instalado — no Diagnóstico, definimos juntos quais especialistas fazem sentido pra você começar.</p>
+          <summary>O Awave substitui minha agência de tráfego atual?</summary>
+          <p>Hoje, o Rui (especialista de tráfego) lê e diagnostica sua conta de Meta Ads em tempo real — detecta fadiga de criativo e vazamento de funil. Ele ainda não cria ou otimiza campanhas sozinho. O valor está no diagnóstico contínuo e na coordenação com copy e design — não estamos prometendo piloto automático de mídia paga.</p>
+        </details>
+        <details>
+          <summary>Funciona com Google Ads ou TikTok Ads?</summary>
+          <p>Hoje o foco é Meta Ads (Facebook e Instagram). Outras plataformas de anúncio ainda não têm profundidade real no sistema — preferimos ser honestos sobre isso a prometer algo que não entregamos ainda.</p>
         </details>
         <details>
           <summary>E se eu já tentei automação antes e não funcionou?</summary>
@@ -658,10 +664,18 @@
 
   var cookieBar = document.getElementById('aw-cookie');
   var cookieOk = document.getElementById('aw-cookie-ok');
-  try{ if(localStorage.getItem('awave_cookie_ok') === '1' && cookieBar){ cookieBar.style.display = 'none'; } }catch(err){}
+  var waFloat = document.querySelector('.wa-float');
+  var cookieAlreadyDismissed = false;
+  try{ cookieAlreadyDismissed = localStorage.getItem('awave_cookie_ok') === '1'; }catch(err){}
+  if(cookieAlreadyDismissed){
+    if(cookieBar){ cookieBar.style.display = 'none'; }
+  } else if(waFloat){
+    waFloat.classList.add('behind-cookie');
+  }
   if(cookieOk){
     cookieOk.addEventListener('click', function(){
       cookieBar.style.display = 'none';
+      if(waFloat){ waFloat.classList.remove('behind-cookie'); }
       try{ localStorage.setItem('awave_cookie_ok','1'); }catch(err){}
     });
   }
