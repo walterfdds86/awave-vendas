@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awave — Sua agência de IA</title>
+<meta name="description" content="Um time de especialistas em IA (tráfego, copy, design, jurídico, atendimento, reuniões) sob aprovação humana — não mais uma agência de marketing.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎛️</text></svg>">
+</head>
+<body>
+<style>
+  :root{
+    --void:#0A0E10;
+    --void-2:#0D1315;
+    --panel:#12181B;
+    --panel-2:#171F22;
+    --ink:#EDEFEC;
+    --ink-dim:#8B9A96;
+    --ink-faint:#5B6864;
+    --line:#212B2E;
+    --line-soft:#1A2225;
+    --accent:#F0954A;
+    --accent-soft:rgba(240,149,74,0.12);
+    --accent-contrast:#1A0F04;
+    --verify:#46C9A0;
+    --verify-soft:rgba(70,201,160,0.12);
+    --danger:#E2685A;
+    --danger-soft:rgba(226,104,90,0.12);
+    --radius:5px;
+    --sans-display: 'Bahnschrift', 'Segoe UI Semibold', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --sans-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Segoe UI Mono', Consolas, 'Liberation Mono', monospace;
+  }
+  /* Deliberate single-world dark treatment — Awave is presented as a live technical
+     console, not a document. See note to user re: theme commitment. */
+
+  .awave{background:var(--void);color:var(--ink);font-family:var(--sans-body);line-height:1.6;position:relative;}
+  .awave *{box-sizing:border-box;}
+  .awave img,.awave svg{max-width:100%;display:block;}
+  .awave .wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;}
+  .awave .eyebrow{
+    font-family:var(--mono);text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;
+    color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin:0 0 20px;
+  }
+  .awave .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px 1px var(--accent);display:inline-block;flex:none;}
+  .awave h1,.awave h2,.awave h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--sans-display);letter-spacing:-.01em;}
+  .awave h2{font-size:clamp(26px,3.2vw,38px);}
+  .awave p{margin:0;}
+  .awave section{padding:96px 0;border-bottom:1px solid var(--line-soft);position:relative;}
+  .awave section:last-of-type{border-bottom:none;}
+  .awave a{color:inherit;}
+  .awave button,.awave .btn{font-family:var(--mono);font-size:13.5px;letter-spacing:.02em;cursor:pointer;}
+  .awave :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .awave .topbar{padding:22px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line-soft);position:relative;z-index:2;}
+  .awave .logo{font-family:var(--sans-display);font-weight:700;letter-spacing:.06em;font-size:16px;display:flex;align-items:center;gap:9px;}
+  .awave .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 2px var(--accent-soft),0 0 6px 1px var(--accent);}
+  .awave .topbar .btn-ghost{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 16px;border-radius:var(--radius);font-family:var(--mono);font-size:12.5px;}
+
+  .awave .btn-primary{
+    background:var(--accent);color:var(--accent-contrast);border:none;padding:15px 26px;border-radius:var(--radius);
+    font-weight:700;transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;display:inline-block;
+    box-shadow:0 0 0 1px rgba(240,149,74,0.3), 0 8px 24px -8px rgba(240,149,74,0.45);
+  }
+  .awave .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .awave .btn-secondary{background:transparent;color:var(--ink);border:1px solid var(--line);padding:15px 26px;border-radius:var(--radius);}
+  .awave .cta-note{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:12px;}
+
+  /* ---------- hero + canvas ---------- */
+  .awave .hero{padding-top:72px;overflow:hidden;}
+  .awave .wave-bg{position:absolute;inset:-40px -28px auto -28px;width:calc(100% + 56px);height:420px;opacity:.55;pointer-events:none;}
+  .awave .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;position:relative;z-index:1;}
+  .awave .hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.12;}
+  .awave .hero .lede{margin-top:22px;font-size:17.5px;color:var(--ink-dim);max-width:54ch;}
+  .awave .hero ul{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .awave .hero li{font-family:var(--mono);font-size:13px;display:flex;gap:10px;color:var(--ink);}
+  .awave .hero li::before{content:"›";color:var(--verify);font-weight:700;}
+  .awave .hero-ctas{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* ---------- HUD panel (hero mockup) ---------- */
+  .awave .hud-panel{
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .awave .hud-panel .bar{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18);
+  }
+  .awave .hud-panel .bar .path{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.03em;}
+  .awave .hud-panel .bar .live{font-family:var(--mono);font-size:10px;color:var(--verify);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.08em;}
+  .awave .hud-panel .bar .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--verify);box-shadow:0 0 6px 1px var(--verify);animation:pulse 1.8s infinite;}
+  .awave .hud-panel .body{padding:8px 18px 18px;}
+  .awave .roster-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid var(--line-soft);}
+  .awave .roster-row:first-child{border-top:none;}
+  .awave .roster-who{display:flex;align-items:center;gap:11px;}
+  .awave .roster-avatar{
+    width:28px;height:28px;border-radius:50%;background:var(--panel-2);color:var(--ink-dim);
+    font-family:var(--mono);font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);
+  }
+  .awave .roster-name{font-size:13.5px;font-weight:600;}
+  .awave .roster-role{font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .awave .chip{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:4px 9px;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;}
+  .awave .chip::before{content:"";width:6px;height:6px;border-radius:50%;}
+  .awave .chip.ativo{background:var(--verify-soft);color:var(--verify);border-color:rgba(70,201,160,.25);}
+  .awave .chip.ativo::before{background:var(--verify);box-shadow:0 0 6px 1px var(--verify);}
+  .awave .chip.gravando{background:var(--accent-soft);color:var(--accent);border-color:rgba(240,149,74,.3);}
+  .awave .chip.gravando::before{background:var(--accent);box-shadow:0 0 6px 1px var(--accent);animation:pulse 1.6s infinite;}
+  .awave .chip.espera{background:rgba(139,154,150,.08);color:var(--ink-dim);border-color:var(--line);}
+  .awave .chip.espera::before{background:var(--ink-faint);}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  @media (prefers-reduced-motion: reduce){ .awave .chip::before,.awave .hud-panel .bar .live::before{animation:none;} }
+  .awave .roster-footer{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
+  .awave .roster-footer b{color:var(--accent);}
+
+  /* ---------- enemy ---------- */
+  .awave .enemy .wrap{max-width:820px;}
+  .awave .enemy p{font-size:18.5px;margin-bottom:22px;color:var(--ink-dim);}
+  .awave .enemy .pull{font-size:clamp(22px,2.4vw,29px);line-height:1.4;color:var(--ink);font-weight:600;border-left:2px solid var(--accent);padding-left:24px;margin:36px 0;font-family:var(--sans-display);}
+  .awave .enemy .pull b{color:var(--accent);}
+
+  /* ---------- compare table ---------- */
+  .awave .compare-scroll{overflow-x:auto;}
+  .awave table.compare{width:100%;border-collapse:collapse;min-width:680px;margin-top:8px;}
+  .awave table.compare th{text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.07em;padding:14px 18px;border-bottom:1px solid var(--line);color:var(--ink-faint);font-weight:600;}
+  .awave table.compare th.col-awave{color:var(--verify);}
+  .awave table.compare td{padding:18px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-size:14.5px;}
+  .awave table.compare td.label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);width:150px;}
+  .awave table.compare td.agency{color:var(--ink-dim);border-right:1px dashed var(--line);}
+  .awave table.compare td.mine{color:var(--ink);background:var(--verify-soft);}
+  .awave table.compare tr:last-child td{border-bottom:none;}
+
+  /* ---------- team grid ---------- */
+  .awave .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;border-radius:8px;overflow:hidden;}
+  .awave .agent-card{background:var(--panel);padding:26px;display:flex;flex-direction:column;gap:14px;transition:background .2s ease;}
+  .awave .agent-card:hover{background:var(--panel-2);}
+  .awave .agent-head{display:flex;align-items:center;gap:12px;}
+  .awave .agent-avatar{width:38px;height:38px;border-radius:50%;background:var(--panel-2);color:var(--verify);font-family:var(--mono);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none;border:1px solid rgba(70,201,160,.3);box-shadow:0 0 12px -2px var(--verify-soft);}
+  .awave .agent-name{font-size:16.5px;font-family:var(--sans-display);font-weight:600;}
+  .awave .agent-role{font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;}
+  .awave .agent-card p{color:var(--ink-dim);font-size:13.5px;}
+  .awave .agent-snippet{background:var(--void-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
+  .awave .agent-snippet b{color:var(--ink);font-weight:600;}
+
+  /* ---------- gate (approvals) ---------- */
+  .awave .gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .awave .gate-mock{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:0 20px 60px -30px rgba(0,0,0,.6);}
+  .awave .gate-mock .kind{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:10px;}
+  .awave .gate-mock .req{font-size:15px;margin-bottom:18px;color:var(--ink);}
+  .awave .gate-mock .req b{font-weight:700;color:var(--ink);}
+  .awave .gate-actions{display:flex;gap:8px;}
+  .awave .gate-actions button{padding:9px 14px;border-radius:var(--radius);font-size:12px;}
+  .awave .gate-actions .aprovar{background:var(--verify);color:#04231A;border:none;font-weight:700;}
+  .awave .gate-actions .ajustar{background:transparent;border:1px solid var(--line);color:var(--ink);}
+  .awave .gate-actions .recusar{background:transparent;border:1px solid rgba(226,104,90,.3);color:var(--danger);}
+  .awave .gate-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;margin-top:18px;}
+  .awave .gate-list li{font-family:var(--mono);font-size:11px;color:var(--ink-faint);display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line-soft);}
+
+  /* ---------- brain graph ---------- */
+  .awave .brain-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .awave .brain-mock{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;}
+  .awave .brain-mock svg circle{filter:drop-shadow(0 0 5px currentColor);}
+  .awave .brain-terminal{margin-top:14px;background:var(--void-2);color:var(--ink-dim);font-family:var(--mono);font-size:11px;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--line);}
+  .awave .brain-terminal .hash{color:var(--accent);}
+
+  /* ---------- mechanism steps ---------- */
+  .awave .steps{display:flex;flex-direction:column;gap:0;margin-top:40px;}
+  .awave .step{display:grid;grid-template-columns:56px 1fr 230px;gap:28px;padding:28px 0;border-top:1px solid var(--line-soft);align-items:center;}
+  .awave .step:first-child{border-top:none;}
+  .awave .step .num{font-family:var(--mono);font-size:12.5px;color:var(--accent);padding-top:4px;}
+  .awave .step h3{font-size:18px;font-weight:600;margin-bottom:6px;font-family:var(--sans-display);}
+  .awave .step p{color:var(--ink-dim);font-size:14px;max-width:46ch;}
+  .awave .step-visual{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);}
+
+  /* ---------- authority ---------- */
+  .awave .authority-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start;}
+  .awave .authority p{font-size:16.5px;color:var(--ink-dim);margin-bottom:16px;}
+  .awave .authority strong{color:var(--ink);font-weight:700;}
+  .awave .ledger{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px;}
+  .awave .ledger .row{display:flex;justify-content:space-between;align-items:center;padding:17px;border-bottom:1px solid var(--line-soft);}
+  .awave .ledger .row:last-child{border-bottom:none;}
+  .awave .ledger .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:22px;color:var(--accent);font-weight:600;}
+  .awave .ledger .lbl{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:right;max-width:150px;}
+
+  /* ---------- delivery ---------- */
+  .awave .delivery-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .awave .delivery p{font-size:16.5px;color:var(--ink-dim);margin-bottom:14px;}
+  .awave .delivery-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:28px;}
+  .awave .delivery-card .di{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-soft);color:var(--ink-dim);font-size:14.5px;}
+  .awave .delivery-card .di:last-child{border-bottom:none;}
+  .awave .delivery-card .di .tag{font-family:var(--mono);font-size:11px;color:var(--verify);white-space:nowrap;padding-top:2px;}
+
+  /* ---------- offer ---------- */
+  .awave .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .awave .stack{list-style:none;margin:0;padding:0;}
+  .awave .stack li{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line-soft);color:var(--ink-dim);font-size:14.5px;}
+  .awave .stack li:first-child{border-top:none;}
+  .awave .stack .mark{font-family:var(--mono);color:var(--verify);}
+  .awave .anchor-box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px;}
+
+  /* ---------- guarantee ---------- */
+  .awave .guarantee .wrap{max-width:760px;}
+  .awave .guarantee .badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;border:1px solid rgba(70,201,160,.3);color:var(--verify);padding:8px 14px;border-radius:20px;margin-bottom:22px;background:var(--verify-soft);}
+  .awave .guarantee .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--verify);box-shadow:0 0 6px 1px var(--verify);}
+  .awave .guarantee p{font-size:16.5px;color:var(--ink-dim);max-width:60ch;margin-bottom:14px;}
+
+  /* ---------- faq ---------- */
+  .awave .faq-list{margin-top:36px;border-top:1px solid var(--line-soft);}
+  .awave details{border-bottom:1px solid var(--line-soft);}
+  .awave summary{list-style:none;cursor:pointer;padding:21px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:16px;font-weight:600;}
+  .awave summary::-webkit-details-marker{display:none;}
+  .awave summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:20px;transition:transform .2s ease;font-weight:400;}
+  .awave details[open] summary::after{transform:rotate(45deg);}
+  .awave details p{color:var(--ink-dim);padding:0 0 22px;max-width:66ch;font-size:14.5px;}
+
+  /* ---------- final cta ---------- */
+  .awave .final-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .awave .final-cta .ps{margin-top:26px;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);padding-top:20px;}
+  .awave .book-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px;}
+  .awave .book-card label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);display:block;margin-bottom:7px;}
+  .awave .book-card .fld{margin-bottom:16px;}
+  .awave .book-card input,.awave .book-card select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--void-2);color:var(--ink);font-family:var(--sans-body);font-size:14.5px;}
+  .awave .book-card input::placeholder{color:var(--ink-faint);}
+  .awave .book-card button{width:100%;}
+  .awave .book-ok{display:none;font-family:var(--mono);font-size:12.5px;color:var(--verify);margin-top:12px;}
+
+  /* ---------- footer ---------- */
+  .awave footer{padding:40px 0 120px;}
+  .awave footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);}
+  .awave footer a{color:var(--ink-faint);text-decoration:underline;}
+
+  /* ---------- floating elements ---------- */
+  .awave .wa-float{
+    position:fixed;right:22px;bottom:22px;z-index:40;
+    width:52px;height:52px;border-radius:50%;background:var(--verify);color:#04231A;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(70,201,160,.5), 0 0 0 1px rgba(70,201,160,.4);
+    text-decoration:none;
+  }
+  .awave .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:39;
+    background:var(--panel);border-top:1px solid var(--line);
+    padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .awave .sticky-cta strong{font-size:13px;color:var(--ink);}
+  .awave .sticky-cta .btn-primary{padding:11px 18px;font-size:12.5px;white-space:nowrap;}
+  .awave .cookie-bar{
+    position:fixed;left:16px;right:16px;bottom:16px;max-width:560px;z-index:41;
+    background:var(--panel);color:var(--ink-dim);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;
+    font-size:12.5px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 50px -10px rgba(0,0,0,.6);
+  }
+  .awave .cookie-bar button{background:var(--accent);color:var(--accent-contrast);border:none;padding:8px 14px;border-radius:var(--radius);white-space:nowrap;font-family:var(--mono);font-weight:700;}
+  .awave [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .awave [data-reveal].in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){.awave [data-reveal]{opacity:1;transform:none;transition:none;}}
+
+  @media (max-width:860px){
+    .awave section{padding:60px 0;}
+    .awave .hero-grid,.awave .authority-grid,.awave .delivery-grid,.awave .offer-grid,.awave .final-grid,.awave .gate-grid,.awave .brain-grid{grid-template-columns:1fr;}
+    .awave .team-grid{grid-template-columns:1fr;}
+    .awave .step{grid-template-columns:36px 1fr;}
+    .awave .step-visual{display:none;}
+    .awave .sticky-cta{display:flex;}
+    .awave .wa-float{bottom:88px;width:46px;height:46px;}
+    .awave .wave-bg{height:280px;}
+    table.compare{min-width:600px;}
+  }
+</style>
+
+<div class="awave">
+
+  <div class="wrap topbar">
+    <div class="logo"><span class="dot"></span>AWAVE</div>
+    <a href="#agendar" class="btn-ghost">Agendar diagnóstico</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas class="wave-bg" id="aw-wave" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Sua agência de IA, não mais uma agência de marketing</p>
+        <h1>Você não precisa contratar mais uma agência. Precisa do seu próprio time de especialistas em IA.</h1>
+        <p class="lede">O Awave é um time completo — tráfego, copy, design, jurídico, atendimento e reuniões — trabalhando dentro da sua empresa, sob o mesmo freio: nenhuma ação de peso acontece sem a sua aprovação.</p>
+        <ul>
+          <li>Um time de especialistas, não um punhado de ferramentas soltas</li>
+          <li>Toda ação de escrita (campanha, contrato, resposta, tarefa) pede seu sinal verde antes de sair do papel</li>
+          <li>O conhecimento do seu negócio fica registrado num Segundo Cérebro que é seu — não da agência</li>
+        </ul>
+        <div class="hero-ctas">
+          <a href="#agendar" class="btn-primary">Quero conhecer meu time de especialistas</a>
+        </div>
+        <p class="cta-note">Diagnóstico gratuito de 1h30 — sem compromisso, sem letra miúda.</p>
+      </div>
+
+      <div class="hud-panel" data-reveal>
+        <div class="bar"><span class="path">awave.app/organograma</span><span class="live">ao vivo</span></div>
+        <div class="body">
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">CO</span><div><div class="roster-name">COO</div><div class="roster-role">orquestração</div></div></div>
+            <span class="chip ativo">ativo</span>
+          </div>
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">RU</span><div><div class="roster-name">Rui</div><div class="roster-role">tráfego · Meta Ads</div></div></div>
+            <span class="chip ativo">ativo</span>
+          </div>
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">LI</span><div><div class="roster-name">Lia</div><div class="roster-role">copy</div></div></div>
+            <span class="chip espera">aguardando aprovação</span>
+          </div>
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">TE</span><div><div class="roster-name">Téo</div><div class="roster-role">design</div></div></div>
+            <span class="chip ativo">ativo</span>
+          </div>
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">AL</span><div><div class="roster-name">Alan</div><div class="roster-role">jurídico</div></div></div>
+            <span class="chip espera">aguardando aprovação</span>
+          </div>
+          <div class="roster-row">
+            <div class="roster-who"><span class="roster-avatar">SR</span><div><div class="roster-name">Secretária</div><div class="roster-role">reuniões</div></div></div>
+            <span class="chip gravando">gravando</span>
+          </div>
+          <div class="roster-footer"><span>7 agentes no time</span><span><b>3</b> aprovações pendentes</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INIMIGO COMUM -->
+  <section class="enemy">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">O inimigo comum</p>
+      <p>Toda agência de marketing vende a mesma promessa: "relaxa, a gente cuida disso pra você". Só que "cuidar" costuma virar isso: você não sabe exatamente o que estão fazendo com seu orçamento de anúncios, descobre tarde que o account manager mudou pela terceira vez, e não faz ideia de quem está respondendo seus clientes no WhatsApp às 22h em seu nome.</p>
+      <p class="pull">E se um dia você trocar de agência, leva o quê? <b>Um PDF de relatório e a sensação de ter pago caro por uma caixa preta.</b></p>
+      <p>O Awave inverte essa lógica. Em vez de terceirizar decisão pra um time que você nunca conhece pessoalmente, você passa a ter seu próprio time de especialistas em IA — tráfego, copy, design, jurídico, atendimento e reuniões — trabalhando dentro da sua empresa, com cada ação de peso passando por você antes de acontecer.</p>
+    </div>
+  </section>
+
+  <!-- COMPARATIVO -->
+  <section class="compare">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Agência de marketing vs. Awave</p>
+      <h2>A diferença não está no discurso. Está em quem decide e quem enxerga o que está acontecendo.</h2>
+      <div class="compare-scroll">
+        <table class="compare">
+          <thead><tr><th></th><th>Agência de marketing</th><th class="col-awave">Awave</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Quem executa</td><td class="agency">Time terceirizado, que muda de account manager sem avisar</td><td class="mine">Seu próprio time de especialistas em IA, estável, sempre disponível</td></tr>
+            <tr><td class="label">Visibilidade do gasto</td><td class="agency">Relatório mensal, depois do fato</td><td class="mine">Painel de custo em tempo real, por agente</td></tr>
+            <tr><td class="label">Controle de ação</td><td class="agency">"Confia no relatório que a gente manda"</td><td class="mine">Toda ação de escrita pede sua aprovação antes de sair do papel</td></tr>
+            <tr><td class="label">Conhecimento do negócio</td><td class="agency">Fica na cabeça do account manager — se ele sai, leva junto</td><td class="mine">Fica no seu Segundo Cérebro, registrado e seu pra sempre</td></tr>
+            <tr><td class="label">Contrato</td><td class="agency">Fidelidade, multa por cancelamento</td><td class="mine">É seu sistema — continua rodando mesmo se trocar de consultoria</td></tr>
+            <tr><td class="label">Escopo</td><td class="agency">Geralmente só tráfego, ou só social media</td><td class="mine">Tráfego, copy, design, jurídico, atendimento e reuniões, coordenados</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONHEÇA O TIME -->
+  <section class="team">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Conheça o time</p>
+      <h2>Seis especialistas, um freio em comum</h2>
+      <div class="team-grid">
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">RU</span><div><div class="agent-name">Rui</div><div class="agent-role">Tráfego · Meta Ads</div></div></div>
+          <p>Lê as métricas reais da sua conta de Meta Ads, detecta fadiga de criativo e vazamento de funil antes que custem caro, e passa pra Lia o que precisa de peça nova.</p>
+          <div class="agent-snippet">⚠ fadiga detectada · criativo <b>"Depoimento_v3"</b> · CPA +18%</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">LI</span><div><div class="agent-name">Lia</div><div class="agent-role">Copy</div></div></div>
+          <p>Escreve com a voz registrada da sua marca, mantém um repositório de referências, e liga o desempenho real do anúncio publicado de volta à peça que o gerou.</p>
+          <div class="agent-snippet">peça <b>"Chamada_04"</b> · no ar há 6 dias · CTR 2,1%</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">TE</span><div><div class="agent-name">Téo</div><div class="agent-role">Design</div></div></div>
+          <p>Gera imagens e variações de criativo com IA a partir das referências visuais da sua marca, prontas pra entrar na campanha.</p>
+          <div class="agent-snippet">gerando variação <b>3/4</b> · referência: logo + paleta da marca</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">AL</span><div><div class="agent-name">Alan</div><div class="agent-role">Jurídico</div></div></div>
+          <p>Lê os contratos que você sobe em PDF, aponta cláusulas de atenção e extrai prazos automaticamente pro radar — sem depender de alguém ler o contrato inteiro.</p>
+          <div class="agent-snippet">radar de prazos · <b>1 vencendo</b> em 5 dias</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">AT</span><div><div class="agent-name">Atendimento</div><div class="agent-role">Inbox · WhatsApp</div></div></div>
+          <p>Responde ou rascunha resposta pro seu WhatsApp. No modo supervisionado, nada sai sem você aprovar; no autônomo, responde direto quando já confia.</p>
+          <div class="agent-snippet">rascunho pendente · cliente <b>Marcos R.</b> · aguardando aprovação</div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-head"><span class="agent-avatar">SR</span><div><div class="agent-name">Secretária</div><div class="agent-role">Reuniões</div></div></div>
+          <p>Entra na sua reunião (Meet/Teams/Zoom/Webex), transcreve, sugere tarefas com dono e prazo — só cria no ClickUp depois da sua aprovação.</p>
+          <div class="agent-snippet">reunião <b>"Planejamento Q3"</b> · pronta · 3 tarefas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APROVAÇÕES -->
+  <section class="gate">
+    <div class="wrap gate-grid" data-reveal>
+      <div>
+        <p class="eyebrow">O freio central</p>
+        <h2 style="margin-bottom:20px;">Nenhum especialista age sozinho quando a ação não tem volta</h2>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação — ler uma métrica, listar um evento — roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real — criar, enviar, publicar, excluir — pára numa fila de aprovação antes de acontecer.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
+      </div>
+      <div class="gate-mock">
+        <p class="kind">tool_action · pendente</p>
+        <p class="req">Alan sugere: <b>criar tarefa de renovação de contrato</b> — vence em 5 dias, cliente "Distribuidora Ipê".</p>
+        <div class="gate-actions">
+          <button type="button" class="aprovar">Aprovar</button>
+          <button type="button" class="ajustar">Ajustar</button>
+          <button type="button" class="recusar">Recusar</button>
+        </div>
+        <ul class="gate-list">
+          <li><span>Lia · publicar peça de copy</span><span>pendente</span></li>
+          <li><span>Atendimento · responder Marcos R.</span><span>pendente</span></li>
+          <li><span>Secretária · criar 3 tarefas no ClickUp</span><span>aprovado</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGUNDO CÉREBRO -->
+  <section class="brain">
+    <div class="wrap brain-grid" data-reveal>
+      <div class="brain-mock">
+        <svg viewBox="0 0 300 160" width="100%" height="160" role="img" aria-label="Grafo do Segundo Cérebro">
+          <line x1="150" y1="80" x2="60" y2="35" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="150" y1="80" x2="235" y2="30" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="150" y1="80" x2="55" y2="125" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="150" y1="80" x2="240" y2="120" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="235" y1="30" x2="240" y2="120" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="150" cy="80" r="10" fill="var(--accent)" style="color:var(--accent)"/>
+          <circle cx="60" cy="35" r="6" fill="var(--verify)" style="color:var(--verify)"/>
+          <circle cx="235" cy="30" r="6" fill="var(--verify)" style="color:var(--verify)"/>
+          <circle cx="55" cy="125" r="6" fill="var(--verify)" style="color:var(--verify)"/>
+          <circle cx="240" cy="120" r="6" fill="var(--verify)" style="color:var(--verify)"/>
+        </svg>
+        <div class="brain-terminal">$ git commit -m "genesis: identidade da empresa"<br>&nbsp;&nbsp;<span class="hash">7f3a91c</span> · identidade/empresa.md</div>
+      </div>
+      <div>
+        <p class="eyebrow">Segundo Cérebro</p>
+        <h2 style="margin-bottom:20px;">O conhecimento do seu negócio, guardado no seu próprio GitHub — não na cabeça de um account manager</h2>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Cada conversa, decisão e aprendizado do seu time de IA vira nota nesse repositório, hospedado na sua conta. Os agentes citam a nota exata quando respondem — nada de "confia em mim".</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">Se um dia você quiser trocar de fornecedor, o conhecimento acumulado do seu negócio vai com você. Não fica preso na cabeça de ninguém.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA / ORQUESTRAÇÃO -->
+  <section class="mechanism">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Como o time trabalha junto</p>
+      <h2>Do objetivo à ação — sempre passando por você</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <div><h3>Você fala o objetivo</h3><p>Em qualquer cockpit, ou direto pro COO: "quero uma campanha nova pro lançamento do produto X".</p></div>
+          <div class="step-visual">objetivo → COO</div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div><h3>O COO monta o plano</h3><p>Divide entre os especialistas certos — Rui analisa a conta, Lia escreve, Téo desenha — com as dependências entre eles.</p></div>
+          <div class="step-visual">plano: 3 passos<br>Rui → Lia → Téo</div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div><h3>O plano pede aprovação</h3><p>Antes de qualquer especialista começar a trabalhar nele, o plano inteiro passa pela sua aprovação.</p></div>
+          <div class="step-visual">kind: plan<br>status: pendente</div>
+        </div>
+        <div class="step">
+          <span class="num">04</span>
+          <div><h3>Cada especialista executa sua parte</h3><p>Você acompanha ao vivo em /organograma quem está fazendo o quê, e quanto está custando em /custo.</p></div>
+          <div class="step-visual">Rui ✓ · Lia ● · Téo aguardando</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORIDADE -->
+  <section class="authority">
+    <div class="wrap authority-grid" data-reveal>
+      <div>
+        <p class="eyebrow">Por que confiar num sistema</p>
+        <h2 style="margin-bottom:22px;">Não terceirizei isso de ninguém — montei esse time a partir do que aprendi implementando IA em consultoria real</h2>
+        <p>Sou <strong>Walter Ferreira</strong>. Há 8 anos ajudo empresários a vender mais gastando menos.</p>
+        <p>Nesse tempo, vi o mesmo padrão se repetir: o problema quase nunca era falta de estratégia. Era falta de um time que executasse com controle. Foi por isso que criei o <strong>Diagnóstico 360</strong> — analiso tráfego, copy, funil e processo interno antes de propor qualquer solução.</p>
+        <p>O Awave nasceu dentro desse método — é o time de especialistas que uso com meus próprios clientes de consultoria, agora disponível como sistema próprio.</p>
+      </div>
+      <div class="ledger">
+        <div class="row"><span class="num">30+</span><span class="lbl">empresas atendidas</span></div>
+        <div class="row"><span class="num">8 anos</span><span class="lbl">de mercado</span></div>
+        <div class="row"><span class="num">R$100k+</span><span class="lbl">geridos em tráfego pago</span></div>
+        <div class="row"><span class="num">R$10mi+</span><span class="lbl">gerados em vendas pra clientes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREGA -->
+  <section class="delivery">
+    <div class="wrap delivery-grid" data-reveal>
+      <div>
+        <p class="eyebrow">Como entregamos</p>
+        <h2 style="margin-bottom:20px;">Você não vai configurar nada sozinho</h2>
+        <p>O Awave roda numa infraestrutura própria da sua empresa — mas você não precisa entender de servidor, integração ou linha de código pra usar.</p>
+        <p>O que sobra pra você: conversar com seu time, aprovar o que eles sugerem, e acompanhar o organograma e o custo em tempo real. O resto, a tecnologia resolve.</p>
+      </div>
+      <div class="delivery-card">
+        <div class="di"><span class="tag">01</span><span>Instalação do sistema na infraestrutura da sua empresa</span></div>
+        <div class="di"><span class="tag">02</span><span>Conexão com as ferramentas que você já usa (ClickUp, Meta Ads, WhatsApp, agenda)</span></div>
+        <div class="di"><span class="tag">03</span><span>Seu Segundo Cérebro criado no seu próprio GitHub</span></div>
+        <div class="di"><span class="tag">04</span><span>Time de especialistas pronto antes de você ver a primeira tela</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="offer" id="oferta">
+    <div class="wrap offer-grid" data-reveal>
+      <div>
+        <p class="eyebrow">O que você leva</p>
+        <h2 style="margin-bottom:24px;">Um time inteiro, não uma ferramenta isolada</h2>
+        <ul class="stack">
+          <li><span class="mark">＋</span><span>Awave instalado e configurado pela nossa equipe — infraestrutura própria da sua empresa</span></li>
+          <li><span class="mark">＋</span><span>Time de especialistas: tráfego (Meta Ads), copy, design, jurídico, atendimento e reuniões</span></li>
+          <li><span class="mark">＋</span><span>Freio de aprovação em toda ação de escrita, em todos os módulos</span></li>
+          <li><span class="mark">＋</span><span>Segundo Cérebro — memória da empresa, versionada no seu próprio GitHub</span></li>
+          <li><span class="mark">＋</span><span>Bônus: Diagnóstico 360 completo do seu processo atual, antes da implementação</span></li>
+          <li><span class="mark">＋</span><span>Bônus: acompanhamento direto comigo no primeiro mês de uso</span></li>
+        </ul>
+      </div>
+      <div class="anchor-box">
+        <p class="eyebrow" style="margin-bottom:14px;">Referência de valor</p>
+        <p style="color:var(--ink-dim);font-size:15px;margin-bottom:14px;">Minha consultoria estratégica completa custa <strong style="color:var(--ink)">R$3.500/mês</strong> — o Awave é o time que uso dentro dela.</p>
+        <p style="color:var(--ink-dim);font-size:15px;margin-bottom:22px;">Como sistema próprio, o investimento é definido no seu Diagnóstico — de acordo com o tamanho da sua operação e quantos especialistas você precisa ativos.</p>
+        <a href="#agendar" class="btn-primary" style="display:block;text-align:center;">Descobrir meu investimento</a>
+        <p class="cta-note" style="text-align:center;">Sem compromisso — o Diagnóstico é gratuito.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section class="guarantee">
+    <div class="wrap" data-reveal>
+      <span class="badge">Garantia Sinal Verde</span>
+      <h2 style="margin-bottom:18px;">Se não fizer sentido pra sua rotina, você não fica preso</h2>
+      <p>Sem multa, sem letra miúda. Tudo começa por um Diagnóstico gratuito, onde eu mesmo avalio se o Awave resolve o seu caso — e quais especialistas fazem sentido pro seu negócio — antes de você investir um centavo.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2>Antes de você perguntar</h2>
+      <div class="faq-list">
+        <details>
+          <summary>O Awave substitui minha agência de tráfego atual?</summary>
+          <p>Hoje, o Rui (especialista de tráfego) lê e diagnostica sua conta de Meta Ads em tempo real — detecta fadiga de criativo e vazamento de funil. Ele ainda não cria ou otimiza campanhas sozinho. O valor está no diagnóstico contínuo e na coordenação com copy e design — não estamos prometendo piloto automático de mídia paga.</p>
+        </details>
+        <details>
+          <summary>Funciona com Google Ads ou TikTok Ads?</summary>
+          <p>Hoje o foco é Meta Ads (Facebook e Instagram). Outras plataformas de anúncio ainda não têm profundidade real no sistema — preferimos ser honestos sobre isso a prometer algo que não entregamos ainda.</p>
+        </details>
+        <details>
+          <summary>Preciso entender de tecnologia pra usar o Awave?</summary>
+          <p>Não. Nossa equipe faz toda a instalação e configuração. Você conversa com seu time e aprova o que eles sugerem — o resto é com a gente.</p>
+        </details>
+        <details>
+          <summary>E se um especialista errar ou sugerir algo que não faz sentido?</summary>
+          <p>Nenhuma ação de escrita acontece sem sua aprovação — você revisa, ajusta ou recusa antes de qualquer coisa virar realidade.</p>
+        </details>
+        <details>
+          <summary>Preciso ter equipe própria de marketing?</summary>
+          <p>Não necessariamente — o time de IA cobre boa parte da execução. Mas toda decisão importante continua passando por você (ou por quem você designar) na fila de aprovação.</p>
+        </details>
+        <details>
+          <summary>Posso ativar só alguns especialistas, não o time todo?</summary>
+          <p>Sim. Cada cockpit é ativado conforme o agente correspondente é instalado — no Diagnóstico, definimos juntos quais especialistas fazem sentido pra você começar.</p>
+        </details>
+        <details>
+          <summary>E se eu já tentei automação antes e não funcionou?</summary>
+          <p>A diferença do Awave é que ele não tenta substituir sua decisão — ele garante que toda decisão importante do seu negócio passe por você antes de virar ação, em vez de ficar perdida ou terceirizada.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta" id="agendar">
+    <div class="wrap final-grid" data-reveal>
+      <div>
+        <p class="eyebrow">Próximo passo</p>
+        <h2>Você tem duas opções agora</h2>
+        <p style="margin-top:20px;color:var(--ink-dim);font-size:16.5px;">Fechar essa página e continuar do jeito que está — dependendo de uma agência que você não enxerga por dentro. Ou agendar 1h30 comigo, conhecer exatamente qual time de especialistas faria sentido pro seu negócio, e decidir com informação real.</p>
+        <p class="ps"><strong style="color:var(--ink)">P.S.</strong> Esse Diagnóstico não é uma reunião de vendas disfarçada. É onde eu analiso seu processo atual — tráfego, copy, funil e a forma como sua empresa hoje toma e executa decisões — antes de te dizer se o Awave faz sentido pra você. Se não fizer, eu falo isso também.</p>
+      </div>
+      <div class="book-card">
+        <form id="awave-book-form">
+          <div class="fld"><label for="aw-nome">Seu nome</label><input id="aw-nome" required placeholder="Como você se chama"></div>
+          <div class="fld"><label for="aw-fone">WhatsApp</label><input id="aw-fone" required placeholder="(00) 00000-0000"></div>
+          <div class="fld"><label for="aw-horario">Melhor horário</label>
+            <select id="aw-horario"><option>Manhã</option><option>Tarde</option><option>Fim de tarde / noite</option></select>
+          </div>
+          <button type="submit" class="btn-primary">Quero agendar meu Diagnóstico gratuito</button>
+        </form>
+        <p class="book-ok" id="aw-book-ok">Perfeito — abrindo o WhatsApp pra confirmar seu horário.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© Awave — um sistema Walter Ferreira Consultoria</span>
+      <span>Seus dados são usados só pra confirmar seu Diagnóstico, conforme a LGPD.</span>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/5561999354363?text=Ol%C3%A1%2C%20quero%20agendar%20meu%20Diagn%C3%B3stico%20gratuito%20do%20Awave" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.1.83.83-3-.2-.32A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.25-.12-1.47-.72-1.7-.8-.23-.08-.4-.12-.56.13-.17.25-.65.8-.8.96-.15.17-.3.19-.55.06-.25-.12-1.07-.4-2.04-1.27-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.3.37-.44.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.9 2.42 1.02 2.59.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28Z" fill="currentColor"/></svg>
+  </a>
+
+  <div class="sticky-cta">
+    <strong>Fale com Walter agora</strong>
+    <a href="#agendar" class="btn-primary">Agendar diagnóstico</a>
+  </div>
+
+  <div class="cookie-bar" id="aw-cookie">
+    <span>Usamos cookies essenciais pra esta página funcionar bem, conforme a LGPD.</span>
+    <button type="button" id="aw-cookie-ok">Entendi</button>
+  </div>
+
+</div>
+
+<!-- REPLACE: fb-pixel-id -->
+<!-- REPLACE: gtm-id -->
+<!-- REPLACE: google-ads-id -->
+
+<script>
+(function(){
+  var form = document.getElementById('awave-book-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nome = document.getElementById('aw-nome').value.trim();
+      var fone = document.getElementById('aw-fone').value.trim();
+      var horario = document.getElementById('aw-horario').value;
+      var msg = 'Olá, me chamo ' + nome + '. Quero agendar meu Diagnóstico gratuito do Awave. Meu WhatsApp: ' + fone + '. Melhor horário: ' + horario + '.';
+      var url = 'https://wa.me/5561999354363?text=' + encodeURIComponent(msg);
+      document.getElementById('aw-book-ok').style.display = 'block';
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  var cookieBar = document.getElementById('aw-cookie');
+  var cookieOk = document.getElementById('aw-cookie-ok');
+  try{ if(localStorage.getItem('awave_cookie_ok') === '1' && cookieBar){ cookieBar.style.display = 'none'; } }catch(err){}
+  if(cookieOk){
+    cookieOk.addEventListener('click', function(){
+      cookieBar.style.display = 'none';
+      try{ localStorage.setItem('awave_cookie_ok','1'); }catch(err){}
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var els = document.querySelectorAll('[data-reveal]');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:0.15});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ---- hero waveform canvas ----
+  var canvas = document.getElementById('aw-wave');
+  if(canvas && canvas.getContext){
+    var ctx = canvas.getContext('2d');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var t = 0;
+
+    function size(){
+      var r = canvas.getBoundingClientRect();
+      canvas.width = r.width * dpr;
+      canvas.height = r.height * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+
+    function drawLine(phase, amp, color, alpha, yOffset, freq){
+      var r = canvas.getBoundingClientRect();
+      ctx.beginPath();
+      for(var x = 0; x <= r.width; x += 4){
+        var y = yOffset + Math.sin((x * freq) + phase) * amp * Math.sin((x / r.width) * Math.PI);
+        if(x === 0){ ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+      }
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+    }
+
+    function frame(){
+      var r = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, r.width, r.height);
+      var baseY = r.height * 0.42;
+      drawLine(t, 46, '#F0954A', 0.5, baseY, 0.010);
+      drawLine(t * 0.7 + 2, 30, '#46C9A0', 0.32, baseY + 34, 0.014);
+      drawLine(t * 1.3 + 4, 18, '#8B9A96', 0.18, baseY - 40, 0.020);
+      if(!reduced){ t += 0.02; requestAnimationFrame(frame); }
+    }
+
+    size();
+    window.addEventListener('resize', size);
+    frame();
+  }
+})();
+</script>
+</body>
+</html>
