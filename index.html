@@ -214,6 +214,26 @@
   .awave .fit-col.yes li::before{content:"✓";position:absolute;left:0;color:var(--verify);font-weight:700;}
   .awave .fit-col.no li::before{content:"✗";position:absolute;left:0;color:var(--danger);font-weight:700;}
 
+  /* ---------- chat mockup (inimigo comum) ---------- */
+  .awave .enemy-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .awave .chat-mock{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
+  .awave .chat-mock .bar{padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);background:rgba(0,0,0,.18);}
+  .awave .chat-body{padding:18px;display:flex;flex-direction:column;gap:9px;}
+  .awave .chat-msg{max-width:82%;padding:10px 13px;border-radius:12px;font-size:13.5px;line-height:1.45;}
+  .awave .chat-msg.them{align-self:flex-start;background:var(--panel-2);color:var(--ink);border-bottom-left-radius:3px;}
+  .awave .chat-msg.us{align-self:flex-end;background:rgba(255,255,255,.04);color:var(--ink-dim);border:1px dashed var(--line);border-bottom-right-radius:3px;}
+  .awave .chat-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);align-self:flex-end;}
+  .awave .chat-gap{align-self:center;font-family:var(--mono);font-size:10.5px;color:var(--danger);margin-top:4px;}
+
+  /* ---------- hire compare (alternativas) ---------- */
+  .awave .hire-compare{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft);}
+  .awave .hire-col{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;}
+  .awave .hire-num{font-family:var(--sans-display);font-size:26px;font-weight:700;color:var(--ink-dim);}
+  .awave .hire-col.brand .hire-num{background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .awave .hire-col span:not(.hire-num){font-size:12px;color:var(--ink-dim);}
+  .awave .hire-col .hire-sub{font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .awave .hire-vs{font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
+
   /* ---------- niche note ---------- */
   .awave .niche-note{margin-top:32px;padding-top:32px;border-top:1px solid var(--line-soft);}
   .awave .niche-note p{color:var(--ink-dim);font-size:15px;max-width:70ch;margin-bottom:18px;}
@@ -391,6 +411,7 @@
     .awave .eq-row{grid-template-columns:1fr;}
     .awave .fit-grid{grid-template-columns:1fr;}
     .awave .alt-grid{grid-template-columns:1fr;}
+    .awave .enemy-grid{grid-template-columns:1fr;}
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
     .awave .mini-screens{grid-template-columns:1fr;}
@@ -478,10 +499,22 @@
 
   <!-- INIMIGO COMUM -->
   <section class="enemy">
-    <div class="wrap" data-reveal>
-      <p class="eyebrow">O inimigo comum</p>
-      <p>Toda agência vende a mesma promessa: "relaxa, a gente cuida disso". Na prática: você não sabe o que fazem com seu orçamento, o account manager troca sem avisar, e ninguém sabe quem respondeu seu cliente às 22h em seu nome.</p>
-      <p class="pull">Trocar de agência, você leva o quê? <b>Um PDF de relatório e a sensação de ter pago caro por uma caixa preta.</b></p>
+    <div class="wrap enemy-grid" data-reveal>
+      <div>
+        <p class="eyebrow">O inimigo comum</p>
+        <p>Toda agência vende a mesma promessa: "relaxa, a gente cuida disso". Na prática: você não sabe o que fazem com seu orçamento, o account manager troca sem avisar, e ninguém sabe quem respondeu seu cliente às 22h em seu nome.</p>
+        <p class="pull">Trocar de agência, você leva o quê? <b>Um PDF de relatório e a sensação de ter pago caro por uma caixa preta.</b></p>
+      </div>
+      <div class="chat-mock hud-frame">
+        <div class="bar">WhatsApp · Distribuidora Ipê</div>
+        <div class="chat-body">
+          <div class="chat-msg them">Oi! Ainda dá pra fechar o pacote com desconto? Preciso decidir hoje 🙏</div>
+          <div class="chat-meta">22:14</div>
+          <div class="chat-msg us">Vou verificar com a equipe e te retorno.</div>
+          <div class="chat-meta">quem respondeu? ninguém sabe dizer.</div>
+          <div class="chat-gap">— 3 dias sem resposta —</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -552,11 +585,17 @@
       <div class="alt-grid">
         <div class="alt-card">
           <h3>"Por que não uso só o ChatGPT?"</h3>
-          <p>Funciona bem pra gerar um texto avulso. Mas ele não guarda o histórico do seu negócio entre conversas, não conecta sozinho no ClickUp ou Meta Ads, e é você quem monta e cola cada etapa — toda vez, do zero.</p>
+          <p>Funciona bem pra um texto avulso. Mas não guarda o histórico do seu negócio, não conecta no ClickUp ou Meta Ads sozinho — é você quem monta e cola cada etapa, toda vez.</p>
+          <div class="agent-snippet">💬 "cria uma campanha pro produto X" → resposta genérica, sem contexto do seu negócio, sem ir pra lugar nenhum</div>
         </div>
         <div class="alt-card">
           <h3>"Por que não contrato alguém?"</h3>
-          <p>Um funcionário ou freelancer resolve uma função por vez — tráfego OU copy OU jurídico. Pra cobrir as seis frentes que o Awave cobre, seria uma folha de vários salários, com treinamento, gestão e o risco de recomeçar do zero se a pessoa sair.</p>
+          <p>Um funcionário ou freelancer resolve uma função por vez. Pra cobrir as seis frentes do Awave, seria uma folha de vários salários — com treinamento e risco de recomeçar do zero se a pessoa sair.</p>
+          <div class="hire-compare">
+            <div class="hire-col"><span class="hire-num">1</span><span>funcionário</span><span class="hire-sub">1 função</span></div>
+            <span class="hire-vs">vs</span>
+            <div class="hire-col brand"><span class="hire-num">6</span><span>especialistas</span><span class="hire-sub">1 fluxo só</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -839,9 +878,15 @@
     <div class="wrap" data-reveal>
       <span class="badge">Garantia Sinal Verde</span>
       <h2 style="margin-bottom:18px;">Você não assume risco nenhum — o risco é nosso</h2>
-      <p style="margin-bottom:18px;">A decisão de contratar só existe depois que a gente te disser — de graça — se o Awave resolve o seu caso. Se acharmos que não resolve, falamos. Ninguém aqui ganha empurrando pra você algo que não serve.</p>
-      <p style="margin-bottom:18px;">Feito isso, se ainda assim não fizer sentido pra sua rotina depois de implementado, você não fica preso. Sem multa, sem letra miúda.</p>
-      <p class="cta-note" style="font-size:13px;">Quem faz esse Diagnóstico é gente de verdade, avaliando seu caso — não um formulário automático. Por isso são poucos horários disponíveis por semana.</p>
+      <p style="margin-bottom:28px;">Ninguém aqui ganha empurrando pra você algo que não serve. Se acharmos que não resolve, a gente fala — de graça.</p>
+      <div class="pipeline" style="max-width:640px;">
+        <div class="pnode"><span class="pnum">01</span><span class="plabel">Diagnóstico</span><span class="pdetail">grátis, 1h30, sem compromisso</span></div>
+        <div class="parrow">→</div>
+        <div class="pnode active"><span class="pnum">02</span><span class="plabel">Você decide</span><span class="pdetail">com gente de verdade, não formulário</span></div>
+        <div class="parrow">→</div>
+        <div class="pnode"><span class="pnum">03</span><span class="plabel">Sem fidelidade</span><span class="pdetail">sem multa, sem letra miúda</span></div>
+      </div>
+      <p class="cta-note" style="font-size:13px;margin-top:20px;">Poucos horários por semana — quem avalia seu caso é gente de verdade.</p>
     </div>
   </section>
 
