@@ -121,6 +121,18 @@
   .awave .enemy .pull{font-size:clamp(22px,2.4vw,29px);line-height:1.4;color:var(--ink);font-weight:600;border-left:2px solid var(--accent);padding-left:24px;margin:36px 0;font-family:var(--sans-display);}
   .awave .enemy .pull b{color:var(--accent);}
 
+  /* ---------- fit (tribe) ---------- */
+  .awave .fit .wrap{max-width:900px;}
+  .awave .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:40px;}
+  .awave .fit-col{background:var(--panel);padding:28px;}
+  .awave .fit-col h3{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;font-weight:700;}
+  .awave .fit-col.yes h3{color:var(--verify);}
+  .awave .fit-col.no h3{color:var(--danger);}
+  .awave .fit-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .awave .fit-col li{font-size:15px;color:var(--ink-dim);padding-left:20px;position:relative;}
+  .awave .fit-col.yes li::before{content:"✓";position:absolute;left:0;color:var(--verify);font-weight:700;}
+  .awave .fit-col.no li::before{content:"✗";position:absolute;left:0;color:var(--danger);font-weight:700;}
+
   /* ---------- compare table ---------- */
   .awave .compare-scroll{overflow-x:auto;}
   .awave table.compare{width:100%;border-collapse:collapse;min-width:680px;margin-top:8px;}
@@ -275,6 +287,7 @@
     .awave .hero-grid,.awave .authority-grid,.awave .delivery-grid,.awave .offer-grid,.awave .final-grid,.awave .gate-grid,.awave .brain-grid{grid-template-columns:1fr;}
     .awave .team-grid{grid-template-columns:1fr;}
     .awave .eq-row{grid-template-columns:1fr;}
+    .awave .fit-grid{grid-template-columns:1fr;}
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
     .awave .sticky-cta{display:flex;}
@@ -302,13 +315,13 @@
         <p class="lede">O Awave reúne tráfego, copy, design, jurídico, atendimento e reuniões num único time — implementado por nós, operado por você. A mesma metodologia que uso há 8 anos com clientes de consultoria, agora disponível como sistema próprio.</p>
         <ul>
           <li>Seu próprio time, não mais uma ferramenta genérica com contrato de fidelidade</li>
-          <li>Você não paga nada até eu, pessoalmente, te dizer se faz sentido pro seu caso</li>
+          <li>Você não paga nada até a gente te dizer se faz sentido pro seu caso</li>
           <li>Nenhuma ação de peso sai do papel sem o seu sinal verde</li>
         </ul>
         <div class="hero-ctas">
           <a href="#agendar" class="btn-primary">Quero meu Diagnóstico sem risco</a>
         </div>
-        <p class="cta-note">1h30, de graça, com Walter — se não fizer sentido pra você, eu falo.</p>
+        <p class="cta-note">1h30, de graça — se não fizer sentido pra você, a gente fala.</p>
       </div>
 
       <div class="hud-panel" data-reveal>
@@ -354,6 +367,32 @@
     </div>
   </section>
 
+  <!-- ISSO NÃO É PRA TODO MUNDO -->
+  <section class="fit">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Isso não é pra todo mundo</p>
+      <h2>O Awave é pra quem já cansou de terceirizar decisão. Não pra quem quer terceirizar culpa.</h2>
+      <div class="fit-grid">
+        <div class="fit-col yes">
+          <h3>É pra você que</h3>
+          <ul>
+            <li>Já pagou agência e não sabe exatamente pelo quê</li>
+            <li>Prefere aprovar uma decisão a ouvir uma desculpa</li>
+            <li>Quer um time que aparece todo dia, não uma vez por mês numa call de resultado</li>
+          </ul>
+        </div>
+        <div class="fit-col no">
+          <h3>Não é pra você que</h3>
+          <ul>
+            <li>Quer terceirizar e nunca mais pensar no assunto</li>
+            <li>Está atrás do mais barato do mercado</li>
+            <li>Não tem 1h30 pra descobrir, sem custo, se faz sentido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- COMPARATIVO -->
   <section class="compare">
     <div class="wrap" data-reveal>
@@ -382,7 +421,8 @@
         <p class="eyebrow">O freio central</p>
         <h2 style="margin-bottom:20px;">Nenhum especialista age sozinho quando a ação não tem volta</h2>
         <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação — ler uma métrica, listar um evento — roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real — criar, enviar, publicar, excluir — pára numa fila de aprovação antes de acontecer.</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">E isso não vira plantão: as sugestões ficam esperando, sem prazo de validade. Você revisa quando fizer sentido pra sua rotina — todo dia, ou uma vez por semana.</p>
       </div>
       <div class="gate-mock">
         <p class="kind">tool_action · pendente</p>
@@ -409,7 +449,7 @@
       <div class="team-grid">
         <div class="agent-card">
           <div class="agent-head"><span class="agent-avatar">RU</span><div><div class="agent-name">Rui</div><div class="agent-role">Tráfego · Meta Ads</div></div></div>
-          <p>Lê as métricas reais da sua conta de Meta Ads, detecta fadiga de criativo e vazamento de funil antes que custem caro, e passa pra Lia o que precisa de peça nova.</p>
+          <p>Lê as métricas reais da sua conta de Meta Ads, detecta fadiga de criativo e vazamento de funil antes que custem caro, e passa pra Lia o que precisa de peça nova. Ele avisa a tempo — quem publica a mudança dentro do Meta Ads ainda é você ou seu time.</p>
           <div class="agent-snippet">⚠ fadiga detectada · criativo <b>"Depoimento_v3"</b> · CPA +18%</div>
         </div>
         <div class="agent-card">
@@ -466,7 +506,8 @@
         <p class="eyebrow">Segundo Cérebro</p>
         <h2 style="margin-bottom:20px;">O conhecimento do seu negócio, guardado no seu próprio GitHub — não na cabeça de um account manager</h2>
         <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Cada conversa, decisão e aprendizado do seu time de IA vira nota nesse repositório, hospedado na sua conta. Os agentes citam a nota exata quando respondem — nada de "confia em mim".</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;">Se um dia você quiser trocar de fornecedor, o conhecimento acumulado do seu negócio vai com você. Não fica preso na cabeça de ninguém.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Se um dia você quiser trocar de fornecedor — ou se a relação com a gente simplesmente terminar — o Awave continua seu: rodando no seu próprio servidor, com seu próprio GitHub. Não fica preso na cabeça de ninguém, nem depende de uma pessoa continuar por perto.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">E não, você não precisa entender o que é GitHub pra usar isso. É só onde o conhecimento fica guardado — como a fiação de uma casa. Você não precisa entender de elétrica pra acender a luz.</p>
       </div>
     </div>
   </section>
@@ -506,10 +547,10 @@
     <div class="wrap authority-grid" data-reveal>
       <div>
         <p class="eyebrow">Por que confiar num sistema</p>
-        <h2 style="margin-bottom:22px;">Não terceirizei isso de ninguém — montei esse time a partir do que aprendi implementando IA em consultoria real</h2>
-        <p>Sou <strong>Walter Ferreira</strong>. Há 8 anos ajudo empresários a vender mais gastando menos.</p>
-        <p>Nesse tempo, vi o mesmo padrão se repetir: o problema quase nunca era falta de estratégia. Era falta de um time que executasse com controle. Foi por isso que criei o <strong>Diagnóstico 360</strong> — analiso tráfego, copy, funil e processo interno antes de propor qualquer solução.</p>
-        <p>O Awave nasceu dentro desse método — é o time de especialistas que uso com meus próprios clientes de consultoria, agora disponível como sistema próprio.</p>
+        <h2 style="margin-bottom:22px;">A maioria dos negócios não tem problema de estratégia. Tem problema de quem executa com controle.</h2>
+        <p>Há 8 anos ajudamos empresários a vender mais gastando menos. O padrão se repetiu tantas vezes que virou certeza: o plano quase nunca é o problema. É a falta de alguém — ou algum time — que execute sem sumir com o controle.</p>
+        <p>Foi daí que nasceu o <strong>Diagnóstico 360</strong> — a mesma lente que usamos antes de propor qualquer solução: tráfego, copy, funil e processo interno, nessa ordem.</p>
+        <p>O Awave é esse método virado sistema. Não terceirizamos a construção pra ninguém — e não terceirizamos a sua decisão agora.</p>
       </div>
       <div class="ledger">
         <div class="row"><span class="num">30+</span><span class="lbl">empresas atendidas</span></div>
@@ -588,7 +629,7 @@
           <li><span class="mark">＋</span><span>Freio de aprovação em toda ação de escrita, em todos os módulos</span></li>
           <li><span class="mark">＋</span><span>Segundo Cérebro — memória da empresa, versionada no seu próprio GitHub</span></li>
           <li><span class="mark">＋</span><span>Bônus: Diagnóstico 360 completo do seu processo atual, antes da implementação</span></li>
-          <li><span class="mark">＋</span><span>Bônus: acompanhamento direto comigo no primeiro mês de uso</span></li>
+          <li><span class="mark">＋</span><span>Bônus: acompanhamento direto com o time no primeiro mês de uso</span></li>
         </ul>
       </div>
       <div class="anchor-box">
@@ -605,10 +646,10 @@
   <section class="guarantee">
     <div class="wrap" data-reveal>
       <span class="badge">Garantia Sinal Verde</span>
-      <h2 style="margin-bottom:18px;">Você não assume risco nenhum — o risco é meu</h2>
-      <p style="margin-bottom:18px;">A decisão de contratar só existe depois que eu, pessoalmente, te disser — de graça — se o Awave resolve o seu caso. Se eu achar que não resolve, eu falo. Não ganho nada empurrando pra você algo que não serve.</p>
+      <h2 style="margin-bottom:18px;">Você não assume risco nenhum — o risco é nosso</h2>
+      <p style="margin-bottom:18px;">A decisão de contratar só existe depois que a gente te disser — de graça — se o Awave resolve o seu caso. Se acharmos que não resolve, falamos. Ninguém aqui ganha empurrando pra você algo que não serve.</p>
       <p style="margin-bottom:18px;">Feito isso, se ainda assim não fizer sentido pra sua rotina depois de implementado, você não fica preso. Sem multa, sem letra miúda.</p>
-      <p class="cta-note" style="font-size:13px;">Faço esse Diagnóstico pessoalmente — por isso são poucos horários disponíveis por semana.</p>
+      <p class="cta-note" style="font-size:13px;">Quem faz esse Diagnóstico é gente de verdade, avaliando seu caso — não um formulário automático. Por isso são poucos horários disponíveis por semana.</p>
     </div>
   </section>
 
@@ -656,8 +697,8 @@
       <div>
         <p class="eyebrow">Próximo passo</p>
         <h2>Você tem duas opções agora</h2>
-        <p style="margin-top:20px;color:var(--ink-dim);font-size:16.5px;">Fechar essa página e continuar do jeito que está — dependendo de uma agência que você não enxerga por dentro. Ou agendar 1h30 comigo, conhecer exatamente qual time de especialistas faria sentido pro seu negócio, e decidir com informação real.</p>
-        <p class="ps"><strong style="color:var(--ink)">P.S.</strong> Esse Diagnóstico não é uma reunião de vendas disfarçada. É onde eu analiso seu processo atual — tráfego, copy, funil e a forma como sua empresa hoje toma e executa decisões — antes de te dizer se o Awave faz sentido pra você. Se não fizer, eu falo isso também.</p>
+        <p style="margin-top:20px;color:var(--ink-dim);font-size:16.5px;">Fechar essa página e continuar do jeito que está — dependendo de uma agência que você não enxerga por dentro. Ou agendar 1h30, conhecer exatamente qual time de especialistas faria sentido pro seu negócio, e decidir com informação real.</p>
+        <p class="ps"><strong style="color:var(--ink)">P.S.</strong> Esse Diagnóstico não é uma reunião de vendas disfarçada. É onde analisamos seu processo atual — tráfego, copy, funil e a forma como sua empresa hoje toma e executa decisões — antes de te dizer se o Awave faz sentido pra você. Se não fizer, a gente fala isso também.</p>
       </div>
       <div class="book-card">
         <form id="awave-book-form">
@@ -675,7 +716,7 @@
 
   <footer>
     <div class="wrap">
-      <span>© Awave — um sistema Walter Ferreira Consultoria</span>
+      <span>© Awave</span>
       <span>Seus dados são usados só pra confirmar seu Diagnóstico, conforme a LGPD.</span>
     </div>
   </footer>
@@ -685,7 +726,7 @@
   </a>
 
   <div class="sticky-cta">
-    <strong>Fale com Walter agora</strong>
+    <strong>Comece a conversa agora</strong>
     <a href="#agendar" class="btn-primary">Diagnóstico sem risco</a>
   </div>
 
