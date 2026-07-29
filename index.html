@@ -192,6 +192,19 @@
   .awave .delivery-card .di:last-child{border-bottom:none;}
   .awave .delivery-card .di .tag{font-family:var(--mono);font-size:11px;color:var(--verify);white-space:nowrap;padding-top:2px;}
 
+  /* ---------- value equation ---------- */
+  .awave .value-eq{max-width:880px;margin:44px auto 0;}
+  .awave .eq-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .awave .eq-factor{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px;}
+  .awave .eq-factor .tag{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .awave .eq-factor.up .tag{color:var(--verify);}
+  .awave .eq-factor.down .tag{color:var(--accent);}
+  .awave .eq-factor h3{font-size:16px;font-weight:600;margin-bottom:8px;font-family:var(--sans-display);}
+  .awave .eq-factor p{color:var(--ink-dim);font-size:13.5px;}
+  .awave .eq-divider{display:flex;align-items:center;gap:16px;margin:20px 0;}
+  .awave .eq-divider .line{flex:1;height:1px;background:var(--line);}
+  .awave .eq-divider span{font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap;}
+
   /* ---------- offer ---------- */
   .awave .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
   .awave .stack{list-style:none;margin:0;padding:0;}
@@ -261,6 +274,7 @@
     .awave section{padding:60px 0;}
     .awave .hero-grid,.awave .authority-grid,.awave .delivery-grid,.awave .offer-grid,.awave .final-grid,.awave .gate-grid,.awave .brain-grid{grid-template-columns:1fr;}
     .awave .team-grid{grid-template-columns:1fr;}
+    .awave .eq-row{grid-template-columns:1fr;}
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
     .awave .sticky-cta{display:flex;}
@@ -275,7 +289,7 @@
 
   <div class="wrap topbar">
     <div class="logo"><span class="dot"></span>AWAVE</div>
-    <a href="#agendar" class="btn-ghost">Agendar diagnóstico</a>
+    <a href="#agendar" class="btn-ghost">Diagnóstico sem risco</a>
   </div>
 
   <!-- HERO -->
@@ -284,17 +298,17 @@
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Sua agência de IA, não mais uma agência de marketing</p>
-        <h1>Você não precisa contratar mais uma agência. Precisa do seu próprio time de especialistas em IA.</h1>
-        <p class="lede">O Awave é um time completo — tráfego, copy, design, jurídico, atendimento e reuniões — trabalhando dentro da sua empresa, sob o mesmo freio: nenhuma ação de peso acontece sem a sua aprovação.</p>
+        <h1>Pare de pagar agência pra prometer resultado. Tenha seu próprio time de especialistas em IA — sem risco antes do Diagnóstico.</h1>
+        <p class="lede">O Awave reúne tráfego, copy, design, jurídico, atendimento e reuniões num único time — implementado por nós, operado por você. A mesma metodologia que uso há 8 anos com clientes de consultoria, agora disponível como sistema próprio.</p>
         <ul>
-          <li>Um time de especialistas, não um punhado de ferramentas soltas</li>
-          <li>Toda ação de escrita (campanha, contrato, resposta, tarefa) pede seu sinal verde antes de sair do papel</li>
-          <li>O conhecimento do seu negócio fica registrado num Segundo Cérebro que é seu — não da agência</li>
+          <li>Seu próprio time, não mais uma ferramenta genérica com contrato de fidelidade</li>
+          <li>Você não paga nada até eu, pessoalmente, te dizer se faz sentido pro seu caso</li>
+          <li>Nenhuma ação de peso sai do papel sem o seu sinal verde</li>
         </ul>
         <div class="hero-ctas">
-          <a href="#agendar" class="btn-primary">Quero conhecer meu time de especialistas</a>
+          <a href="#agendar" class="btn-primary">Quero meu Diagnóstico sem risco</a>
         </div>
-        <p class="cta-note">Diagnóstico gratuito de 1h30 — sem compromisso, sem letra miúda.</p>
+        <p class="cta-note">1h30, de graça, com Walter — se não fizer sentido pra você, eu falo.</p>
       </div>
 
       <div class="hud-panel" data-reveal>
@@ -425,7 +439,7 @@
         </div>
       </div>
       <p style="margin-top:40px;text-align:center;">
-        <a href="#agendar" class="btn-secondary">Quero ver esse time aplicado ao meu negócio</a>
+        <a href="#agendar" class="btn-secondary">Quero saber se isso resolve o meu caso — de graça</a>
       </p>
     </div>
   </section>
@@ -524,12 +538,50 @@
     </div>
   </section>
 
+  <!-- EQUAÇÃO DE VALOR -->
+  <section class="value">
+    <div class="wrap" data-reveal>
+      <p class="eyebrow">Antes de perguntar o preço</p>
+      <h2 style="margin-bottom:16px;">Faça essa conta antes de decidir</h2>
+      <p style="color:var(--ink-dim);font-size:16.5px;max-width:70ch;">Todo investimento vale a pena, ou não, por causa de 4 coisas: o quanto você quer o resultado, o quanto confia que vai dar certo, quanto tempo demora, e quanto esforço exige de você. O Awave foi desenhado pra vencer nas quatro.</p>
+
+      <div class="value-eq">
+        <div class="eq-row">
+          <div class="eq-factor up">
+            <span class="tag">↑ o que você quer</span>
+            <h3>Resultado</h3>
+            <p>Parar de pagar agência que promete e não entrega. Ter seu próprio time, sempre disponível, sem depender de terceiro.</p>
+          </div>
+          <div class="eq-factor up">
+            <span class="tag">↑ sua confiança de dar certo</span>
+            <h3>Prova</h3>
+            <p>8 anos de Diagnóstico 360, Garantia Sinal Verde, e você só decide depois de ver como funciona no seu caso.</p>
+          </div>
+        </div>
+        <div class="eq-divider"><span>÷ tempo e esforço</span><span class="line"></span></div>
+        <div class="eq-row">
+          <div class="eq-factor down">
+            <span class="tag">↓ demora até funcionar</span>
+            <h3>Implementação</h3>
+            <p>Feita por nós, na infraestrutura da sua empresa. Você não aprende ferramenta nova pra começar a usar.</p>
+          </div>
+          <div class="eq-factor down">
+            <span class="tag">↓ esforço exigido de você</span>
+            <h3>Operação</h3>
+            <p>Você só aprova o que já vem pronto — não configura, não programa, não gerencia servidor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- OFERTA -->
   <section class="offer" id="oferta">
     <div class="wrap offer-grid" data-reveal>
       <div>
         <p class="eyebrow">O que você leva</p>
-        <h2 style="margin-bottom:24px;">Um time inteiro, não uma ferramenta isolada</h2>
+        <h2 style="margin-bottom:16px;">Um time inteiro, não uma ferramenta isolada</h2>
+        <p style="color:var(--ink-dim);font-size:15.5px;margin-bottom:24px;">A pergunta não é se isso vale o investimento. É quanto você já perdeu até hoje sem ter isso.</p>
         <ul class="stack">
           <li><span class="mark">＋</span><span>Awave instalado e configurado pela nossa equipe — infraestrutura própria da sua empresa</span></li>
           <li><span class="mark">＋</span><span>Time de especialistas: tráfego (Meta Ads), copy, design, jurídico, atendimento e reuniões</span></li>
@@ -543,7 +595,7 @@
         <p class="eyebrow" style="margin-bottom:14px;">Referência de valor</p>
         <p style="color:var(--ink-dim);font-size:15px;margin-bottom:14px;">Minha consultoria estratégica completa custa <strong style="color:var(--ink)">R$3.500/mês</strong> — o Awave é o time que uso dentro dela.</p>
         <p style="color:var(--ink-dim);font-size:15px;margin-bottom:22px;">Como sistema próprio, o investimento é definido no seu Diagnóstico — de acordo com o tamanho da sua operação e quantos especialistas você precisa ativos.</p>
-        <a href="#agendar" class="btn-primary" style="display:block;text-align:center;">Descobrir meu investimento</a>
+        <a href="#agendar" class="btn-primary" style="display:block;text-align:center;">Quero meu Diagnóstico sem risco</a>
         <p class="cta-note" style="text-align:center;">Sem compromisso — o Diagnóstico é gratuito.</p>
       </div>
     </div>
@@ -553,8 +605,10 @@
   <section class="guarantee">
     <div class="wrap" data-reveal>
       <span class="badge">Garantia Sinal Verde</span>
-      <h2 style="margin-bottom:18px;">Se não fizer sentido pra sua rotina, você não fica preso</h2>
-      <p>Sem multa, sem letra miúda. Tudo começa por um Diagnóstico gratuito, onde eu mesmo avalio se o Awave resolve o seu caso — e quais especialistas fazem sentido pro seu negócio — antes de você investir um centavo.</p>
+      <h2 style="margin-bottom:18px;">Você não assume risco nenhum — o risco é meu</h2>
+      <p style="margin-bottom:18px;">A decisão de contratar só existe depois que eu, pessoalmente, te disser — de graça — se o Awave resolve o seu caso. Se eu achar que não resolve, eu falo. Não ganho nada empurrando pra você algo que não serve.</p>
+      <p style="margin-bottom:18px;">Feito isso, se ainda assim não fizer sentido pra sua rotina depois de implementado, você não fica preso. Sem multa, sem letra miúda.</p>
+      <p class="cta-note" style="font-size:13px;">Faço esse Diagnóstico pessoalmente — por isso são poucos horários disponíveis por semana.</p>
     </div>
   </section>
 
@@ -612,7 +666,7 @@
           <div class="fld"><label for="aw-horario">Melhor horário</label>
             <select id="aw-horario"><option>Manhã</option><option>Tarde</option><option>Fim de tarde / noite</option></select>
           </div>
-          <button type="submit" class="btn-primary">Quero agendar meu Diagnóstico gratuito</button>
+          <button type="submit" class="btn-primary">Quero meu Diagnóstico sem risco</button>
         </form>
         <p class="book-ok" id="aw-book-ok">Perfeito — abrindo o WhatsApp pra confirmar seu horário.</p>
       </div>
@@ -632,7 +686,7 @@
 
   <div class="sticky-cta">
     <strong>Fale com Walter agora</strong>
-    <a href="#agendar" class="btn-primary">Agendar diagnóstico</a>
+    <a href="#agendar" class="btn-primary">Diagnóstico sem risco</a>
   </div>
 
   <div class="cookie-bar" id="aw-cookie">
