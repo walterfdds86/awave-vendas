@@ -49,6 +49,36 @@
   .awave .eq-bars span:nth-child(3){height:65%;animation-delay:-.6s;}
   @keyframes eqbar{0%,100%{transform:scaleY(.35);}50%{transform:scaleY(1);}}
   @media (prefers-reduced-motion: reduce){.awave .eq-bars span{animation:none;transform:scaleY(.8);}}
+  .awave .eq-bars.lg{height:20px;gap:3px;}
+  .awave .eq-bars.lg span{width:3px;}
+
+  /* ---------- voice exchange mockup ---------- */
+  .awave .voice-mock{display:flex;flex-direction:column;gap:12px;margin-top:36px;max-width:620px;}
+  .awave .voice-msg{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:10px;max-width:88%;}
+  .awave .voice-msg.you{align-self:flex-end;flex-direction:row-reverse;background:var(--accent-soft);border:1px solid rgba(240,149,74,.3);}
+  .awave .voice-msg.ai{align-self:flex-start;background:var(--verify-soft);border:1px solid rgba(70,201,160,.3);}
+  .awave .voice-msg p{font-size:13.5px;color:var(--ink);font-style:italic;margin:0;}
+  .awave .voice-msg.you .eq-bars span{background:var(--accent);}
+  .awave .voice-msg.ai .eq-bars span{background:var(--verify);}
+  .awave .voice-tag{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-top:6px;display:block;}
+
+  /* ---------- pipeline ---------- */
+  .awave .pipeline{display:flex;align-items:stretch;gap:0;margin-top:36px;overflow-x:auto;padding-bottom:4px;}
+  .awave .pnode{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:150px;flex:1;}
+  .awave .pnode.active{border-color:rgba(240,149,74,.4);box-shadow:0 0 0 1px rgba(240,149,74,.15);}
+  .awave .pnode .pnum{font-family:var(--mono);font-size:10px;color:var(--accent);}
+  .awave .pnode .plabel{display:block;font-weight:600;font-size:14.5px;margin:6px 0 4px;font-family:var(--sans-display);}
+  .awave .pnode .pdetail{font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .awave .parrow{display:flex;align-items:center;justify-content:center;color:var(--ink-faint);padding:0 8px;flex:none;font-size:16px;}
+
+  /* ---------- mini screens ---------- */
+  .awave .mini-screens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+  .awave .mini-screen{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .awave .mini-screen .bar{padding:9px 12px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18);font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .awave .mini-body{padding:6px 14px;}
+  .awave .mini-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line-soft);font-size:13px;}
+  .awave .mini-row:first-child{border-top:none;}
+  .awave .mini-num{font-family:var(--mono);font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums;}
 
   /* ---------- hud corner frame ---------- */
   .awave .hud-frame{position:relative;}
@@ -179,6 +209,8 @@
   .awave .agent-name{font-size:16.5px;font-family:var(--sans-display);font-weight:600;}
   .awave .agent-role{font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;}
   .awave .agent-card p{color:var(--ink-dim);font-size:13.5px;}
+  .awave .screen-bar{display:flex;align-items:center;gap:8px;margin:-26px -26px 0;padding:8px 14px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18);font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .awave .screen-bar .sdot{width:5px;height:5px;border-radius:50%;background:var(--line);flex:none;}
   .awave .agent-snippet{background:var(--void-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
   .awave .agent-snippet b{color:var(--ink);font-weight:600;}
 
@@ -316,6 +348,9 @@
     .awave .fit-grid{grid-template-columns:1fr;}
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
+    .awave .mini-screens{grid-template-columns:1fr;}
+    .awave .pnode{min-width:130px;}
+    .awave .voice-msg{max-width:96%;}
     .awave .sticky-cta{display:flex;}
     .awave .wa-float{bottom:88px;width:46px;height:46px;}
     .awave .cookie-bar{bottom:82px;}
@@ -399,9 +434,8 @@
   <section class="enemy">
     <div class="wrap" data-reveal>
       <p class="eyebrow">O inimigo comum</p>
-      <p>Toda agência de marketing vende a mesma promessa: "relaxa, a gente cuida disso pra você". Só que "cuidar" costuma virar isso: você não sabe exatamente o que estão fazendo com seu orçamento de anúncios, descobre tarde que o account manager mudou pela terceira vez, e não faz ideia de quem está respondendo seus clientes no WhatsApp às 22h em seu nome.</p>
-      <p class="pull">E se um dia você trocar de agência, leva o quê? <b>Um PDF de relatório e a sensação de ter pago caro por uma caixa preta.</b></p>
-      <p>O Awave inverte essa lógica. Em vez de terceirizar decisão pra um time que você nunca conhece pessoalmente, você passa a ter seu próprio time de especialistas em IA — tráfego, copy, design, jurídico, atendimento e reuniões — trabalhando dentro da sua empresa, com cada ação de peso passando por você antes de acontecer.</p>
+      <p>Toda agência vende a mesma promessa: "relaxa, a gente cuida disso". Na prática: você não sabe o que fazem com seu orçamento, o account manager troca sem avisar, e ninguém sabe quem respondeu seu cliente às 22h em seu nome.</p>
+      <p class="pull">Trocar de agência, você leva o quê? <b>Um PDF de relatório e a sensação de ter pago caro por uma caixa preta.</b></p>
     </div>
   </section>
 
@@ -486,33 +520,39 @@
       <h2>Seis especialistas, um freio em comum</h2>
       <div class="team-grid">
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/trafego</div>
           <div class="agent-head"><span class="agent-avatar">RU</span><div><div class="agent-name">Rui</div><div class="agent-role">Tráfego · Meta Ads</div></div></div>
-          <p>Lê as métricas reais da sua conta de Meta Ads, detecta fadiga de criativo e vazamento de funil antes que custem caro, e passa pra Lia o que precisa de peça nova. Ele avisa a tempo — quem publica a mudança dentro do Meta Ads ainda é você ou seu time.</p>
+          <p>Lê as métricas reais da sua conta de Meta Ads e detecta fadiga de criativo antes que custe caro. Avisa a tempo — quem publica a mudança ainda é você ou seu time.</p>
           <div class="agent-snippet">⚠ fadiga detectada · criativo <b>"Depoimento_v3"</b> · CPA +18%</div>
         </div>
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/copy</div>
           <div class="agent-head"><span class="agent-avatar">LI</span><div><div class="agent-name">Lia</div><div class="agent-role">Copy</div></div></div>
-          <p>Escreve com a voz registrada da sua marca, mantém um repositório de referências, e liga o desempenho real do anúncio publicado de volta à peça que o gerou.</p>
+          <p>Escreve com a voz da sua marca e liga o desempenho real do anúncio publicado de volta à peça que o gerou.</p>
           <div class="agent-snippet">peça <b>"Chamada_04"</b> · no ar há 6 dias · CTR 2,1%</div>
         </div>
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/design</div>
           <div class="agent-head"><span class="agent-avatar">TE</span><div><div class="agent-name">Téo</div><div class="agent-role">Design</div></div></div>
-          <p>Gera imagens e variações de criativo com IA a partir das referências visuais da sua marca, prontas pra entrar na campanha.</p>
+          <p>Gera imagens e variações de criativo com IA a partir das referências visuais da sua marca.</p>
           <div class="agent-snippet">gerando variação <b>3/4</b> · referência: logo + paleta da marca</div>
         </div>
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/juridico</div>
           <div class="agent-head"><span class="agent-avatar">AL</span><div><div class="agent-name">Alan</div><div class="agent-role">Jurídico</div></div></div>
-          <p>Lê os contratos que você sobe em PDF, aponta cláusulas de atenção e extrai prazos automaticamente pro radar — sem depender de alguém ler o contrato inteiro.</p>
+          <p>Lê contratos em PDF, aponta cláusulas de atenção e extrai prazos pro radar — sem depender de alguém ler o contrato inteiro.</p>
           <div class="agent-snippet">radar de prazos · <b>1 vencendo</b> em 5 dias</div>
         </div>
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/inbox</div>
           <div class="agent-head"><span class="agent-avatar">AT</span><div><div class="agent-name">Atendimento</div><div class="agent-role">Inbox · WhatsApp</div></div></div>
-          <p>Responde ou rascunha resposta pro seu WhatsApp. No modo supervisionado, nada sai sem você aprovar; no autônomo, responde direto quando já confia.</p>
+          <p>Responde ou rascunha resposta pro seu WhatsApp. Supervisionado: nada sai sem aprovar. Autônomo: responde direto quando já confia.</p>
           <div class="agent-snippet">rascunho pendente · cliente <b>Marcos R.</b> · aguardando aprovação</div>
         </div>
         <div class="agent-card">
+          <div class="screen-bar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span>awave.app/reunioes</div>
           <div class="agent-head"><span class="agent-avatar">SR</span><div><div class="agent-name">Secretária</div><div class="agent-role">Reuniões</div></div></div>
-          <p>Entra na sua reunião (Meet/Teams/Zoom/Webex), transcreve, sugere tarefas com dono e prazo — só cria no ClickUp depois da sua aprovação.</p>
+          <p>Entra na reunião (Meet/Teams/Zoom/Webex), transcreve e sugere tarefas — só cria no ClickUp depois da sua aprovação.</p>
           <div class="agent-snippet">reunião <b>"Planejamento Q3"</b> · pronta · 3 tarefas</div>
         </div>
       </div>
@@ -554,27 +594,47 @@
   <section class="mechanism">
     <div class="wrap" data-reveal>
       <p class="eyebrow">Como o time trabalha junto</p>
-      <h2>Do objetivo à ação — sempre passando por você</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="num">01</span>
-          <div><h3>Você fala o objetivo</h3><p>Por texto ou de viva voz — o assistente responde falando de verdade — em qualquer cockpit, ou direto pro COO: "quero uma campanha nova pro lançamento do produto X".</p></div>
-          <div class="step-visual">objetivo → COO</div>
+      <h2 style="margin-bottom:16px;">Você fala. O time se organiza. Nada acontece sem seu sinal verde.</h2>
+      <p style="color:var(--ink-dim);font-size:16.5px;max-width:70ch;">Por texto ou de viva voz — os agentes respondem falando de verdade, não só em texto.</p>
+
+      <div class="voice-mock hud-frame">
+        <div class="voice-msg you">
+          <span class="eq-bars lg"><span></span><span></span><span></span></span>
+          <p>"Quero uma campanha nova pro lançamento do produto X."</p>
         </div>
-        <div class="step">
-          <span class="num">02</span>
-          <div><h3>O COO monta o plano</h3><p>Divide entre os especialistas certos — Rui analisa a conta, Lia escreve, Téo desenha — com as dependências entre eles.</p></div>
-          <div class="step-visual">plano: 3 passos<br>Rui → Lia → Téo</div>
+        <div class="voice-msg ai">
+          <span class="eq-bars lg"><span></span><span></span><span></span></span>
+          <p>"Entendido. Vou dividir entre Rui, Lia e Téo e te aviso quando o plano estiver pronto pra aprovar."</p>
         </div>
-        <div class="step">
-          <span class="num">03</span>
-          <div><h3>O plano pede aprovação</h3><p>Antes de qualquer especialista começar a trabalhar nele, o plano inteiro passa pela sua aprovação.</p></div>
-          <div class="step-visual">kind: plan<br>status: pendente</div>
+        <span class="voice-tag">awave.app/conversa · voz em tempo real</span>
+      </div>
+
+      <div class="pipeline">
+        <div class="pnode"><span class="pnum">01</span><span class="plabel">Objetivo</span><span class="pdetail">você fala ou digita</span></div>
+        <div class="parrow">→</div>
+        <div class="pnode"><span class="pnum">02</span><span class="plabel">COO planeja</span><span class="pdetail">Rui → Lia → Téo</span></div>
+        <div class="parrow">→</div>
+        <div class="pnode active"><span class="pnum">03</span><span class="plabel">Aprovação</span><span class="pdetail">status: pendente</span></div>
+        <div class="parrow">→</div>
+        <div class="pnode"><span class="pnum">04</span><span class="plabel">Execução</span><span class="pdetail">Rui ✓ · Lia ● · Téo aguardando</span></div>
+      </div>
+
+      <div class="mini-screens">
+        <div class="mini-screen hud-frame">
+          <div class="bar">awave.app/organograma</div>
+          <div class="mini-body">
+            <div class="mini-row"><span>Rui</span><span class="chip ativo">ativo</span></div>
+            <div class="mini-row"><span>Lia</span><span class="chip espera">aguardando</span></div>
+            <div class="mini-row"><span>Téo</span><span class="chip ativo">ativo</span></div>
+          </div>
         </div>
-        <div class="step">
-          <span class="num">04</span>
-          <div><h3>Cada especialista executa sua parte</h3><p>Você acompanha ao vivo em /organograma quem está fazendo o quê, e quanto está custando em /custo.</p></div>
-          <div class="step-visual">Rui ✓ · Lia ● · Téo aguardando</div>
+        <div class="mini-screen hud-frame">
+          <div class="bar">awave.app/custo</div>
+          <div class="mini-body">
+            <div class="mini-row"><span>Rui</span><span class="mini-num">R$ 12,40</span></div>
+            <div class="mini-row"><span>Lia</span><span class="mini-num">R$ 8,10</span></div>
+            <div class="mini-row"><span>Téo</span><span class="mini-num">R$ 21,90</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -586,9 +646,8 @@
       <div>
         <p class="eyebrow">Por que confiar num sistema</p>
         <h2 style="margin-bottom:22px;">A maioria dos negócios não tem problema de estratégia. Tem problema de quem executa com controle.</h2>
-        <p>Há 8 anos ajudamos empresários a vender mais gastando menos. O padrão se repetiu tantas vezes que virou certeza: o plano quase nunca é o problema. É a falta de alguém — ou algum time — que execute sem sumir com o controle.</p>
-        <p>Foi daí que nasceu o <strong>Diagnóstico 360</strong> — a mesma lente que usamos antes de propor qualquer solução: tráfego, copy, funil e processo interno, nessa ordem.</p>
-        <p>O Awave é esse método virado sistema. Não terceirizamos a construção pra ninguém — e não terceirizamos a sua decisão agora.</p>
+        <p>Há 8 anos vemos o mesmo padrão: o plano raramente é o problema. É a falta de quem execute sem sumir com o controle. Foi daí que nasceu o <strong>Diagnóstico 360</strong> — tráfego, copy, funil e processo interno, nessa ordem, antes de qualquer solução.</p>
+        <p>O Awave é esse método virado sistema.</p>
       </div>
       <div class="ledger">
         <div class="row"><span class="num">30+</span><span class="lbl">empresas atendidas</span></div>
@@ -605,9 +664,8 @@
       <div>
         <p class="eyebrow">Como entregamos</p>
         <h2 style="margin-bottom:20px;">Você não vai configurar nada sozinho</h2>
-        <p>O Awave roda numa infraestrutura própria da sua empresa — mas você não precisa entender de servidor, integração ou linha de código pra usar.</p>
-        <p>O que sobra pra você: conversar com seu time, aprovar o que eles sugerem, e acompanhar o organograma e o custo em tempo real. O resto, a tecnologia resolve.</p>
-        <p style="margin-top:14px;">E sobre o custo que você vê no painel: é a sua própria chave de IA (OpenAI) rodando — o gasto real, sem markup escondido no meio.</p>
+        <p>O Awave roda numa infraestrutura própria da sua empresa — você não precisa entender de servidor, integração ou linha de código. Sobra pra você: conversar com seu time e aprovar o que eles sugerem.</p>
+        <p style="margin-top:14px;">Sobre o custo que aparece no painel: é a sua própria chave de IA (OpenAI) — o gasto real, sem markup escondido.</p>
       </div>
       <div class="delivery-card">
         <div class="di"><span class="tag">01</span><span>Instalação do sistema na infraestrutura da sua empresa</span></div>
