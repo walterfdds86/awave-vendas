@@ -35,8 +35,35 @@
      console, not a document. See note to user re: theme commitment. */
 
   html,body{margin:0;background:var(--void);}
-  .awave{background:var(--void);color:var(--ink);font-family:var(--sans-body);line-height:1.6;position:relative;}
+  .awave{
+    background:
+      radial-gradient(circle at 1px 1px, rgba(237,239,236,0.05) 1px, transparent 0) 0 0/28px 28px,
+      var(--void);
+    color:var(--ink);font-family:var(--sans-body);line-height:1.6;position:relative;
+  }
   .awave *{box-sizing:border-box;}
+  .awave .eq-bars{display:inline-flex;align-items:flex-end;gap:2px;height:9px;flex:none;}
+  .awave .eq-bars span{width:2px;background:currentColor;display:block;border-radius:1px;animation:eqbar 1.1s ease-in-out infinite;}
+  .awave .eq-bars span:nth-child(1){height:40%;animation-delay:-.9s;}
+  .awave .eq-bars span:nth-child(2){height:100%;animation-delay:-.75s;}
+  .awave .eq-bars span:nth-child(3){height:65%;animation-delay:-.6s;}
+  @keyframes eqbar{0%,100%{transform:scaleY(.35);}50%{transform:scaleY(1);}}
+  @media (prefers-reduced-motion: reduce){.awave .eq-bars span{animation:none;transform:scaleY(.8);}}
+
+  /* ---------- hud corner frame ---------- */
+  .awave .hud-frame{position:relative;}
+  .awave .hud-frame::before,.awave .hud-frame::after{
+    content:"";position:absolute;width:18px;height:18px;pointer-events:none;z-index:2;
+  }
+  .awave .hud-frame::before{top:-1px;left:-1px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);}
+  .awave .hud-frame::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--verify);border-right:2px solid var(--verify);}
+
+  /* ---------- status bar ---------- */
+  .awave .status-bar{background:var(--void-2);border-bottom:1px solid var(--line-soft);position:relative;z-index:3;}
+  .awave .status-bar-inner{display:flex;align-items:center;gap:28px;padding:8px 28px;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em;overflow-x:auto;white-space:nowrap;}
+  .awave .status-bar-inner span{display:inline-flex;align-items:center;gap:7px;}
+  .awave .status-dot{width:6px;height:6px;border-radius:50%;background:var(--verify);box-shadow:0 0 6px 1px var(--verify);flex:none;}
+  @media (prefers-reduced-motion: no-preference){.awave .status-dot{animation:pulse 2.4s infinite;}}
   .awave img,.awave svg{max-width:100%;display:block;}
   .awave .wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;}
   .awave .eyebrow{
@@ -89,8 +116,7 @@
     padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18);
   }
   .awave .hud-panel .bar .path{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.03em;}
-  .awave .hud-panel .bar .live{font-family:var(--mono);font-size:10px;color:var(--verify);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.08em;}
-  .awave .hud-panel .bar .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--verify);box-shadow:0 0 6px 1px var(--verify);animation:pulse 1.8s infinite;}
+  .awave .hud-panel .bar .live{font-family:var(--mono);font-size:10px;color:var(--verify);display:flex;align-items:center;gap:7px;text-transform:uppercase;letter-spacing:.08em;}
   .awave .hud-panel .body{padding:8px 18px 18px;}
   .awave .roster-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid var(--line-soft);}
   .awave .roster-row:first-child{border-top:none;}
@@ -300,6 +326,14 @@
 
 <div class="awave">
 
+  <div class="status-bar">
+    <div class="status-bar-inner">
+      <span><span class="status-dot"></span>SISTEMA ONLINE</span>
+      <span>7 AGENTES NO TIME</span>
+      <span>SEGUNDO CÉREBRO SINCRONIZADO</span>
+    </div>
+  </div>
+
   <div class="wrap topbar">
     <div class="logo"><span class="dot"></span>AWAVE</div>
     <a href="#agendar" class="btn-ghost">Diagnóstico sem risco</a>
@@ -324,8 +358,8 @@
         <p class="cta-note">1h30, de graça — se não fizer sentido pra você, a gente fala.</p>
       </div>
 
-      <div class="hud-panel" data-reveal>
-        <div class="bar"><span class="path">awave.app/organograma</span><span class="live">ao vivo</span></div>
+      <div class="hud-panel hud-frame" data-reveal>
+        <div class="bar"><span class="path">awave.app/organograma</span><span class="live"><span class="eq-bars"><span></span><span></span><span></span></span>ao vivo</span></div>
         <div class="body">
           <div class="roster-row">
             <div class="roster-who"><span class="roster-avatar">CO</span><div><div class="roster-name">COO</div><div class="roster-role">orquestração</div></div></div>
@@ -428,7 +462,7 @@
         <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que o Atendimento rascunhou. Você aprova, ajusta ou recusa — sempre antes, nunca depois do estrago.</p>
         <p style="color:var(--ink-dim);font-size:16.5px;">E isso não vira plantão: as sugestões ficam esperando, sem prazo de validade. Você revisa quando fizer sentido pra sua rotina — todo dia, ou uma vez por semana.</p>
       </div>
-      <div class="gate-mock">
+      <div class="gate-mock hud-frame">
         <p class="kind">tool_action · pendente</p>
         <p class="req">Alan sugere: <b>criar tarefa de renovação de contrato</b> — vence em 5 dias, cliente "Distribuidora Ipê".</p>
         <div class="gate-actions">
@@ -491,7 +525,7 @@
   <!-- SEGUNDO CÉREBRO -->
   <section class="brain">
     <div class="wrap brain-grid" data-reveal>
-      <div class="brain-mock">
+      <div class="brain-mock hud-frame">
         <svg viewBox="0 0 300 160" width="100%" height="160" role="img" aria-label="Grafo do Segundo Cérebro">
           <line x1="150" y1="80" x2="60" y2="35" stroke="var(--line)" stroke-width="1.5"/>
           <line x1="150" y1="80" x2="235" y2="30" stroke="var(--line)" stroke-width="1.5"/>
