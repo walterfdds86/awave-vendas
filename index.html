@@ -298,6 +298,15 @@
   .awave .alt-card h3{font-size:17px;font-weight:600;margin-bottom:12px;font-family:var(--sans-display);}
   .awave .alt-card p{color:var(--ink-dim);font-size:14.5px;}
 
+  /* ---------- explicador em 6 respostas ---------- */
+  .awave .explain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
+  .awave .explain-item{background:var(--panel);padding:28px;}
+  .awave .explain-tag{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;margin-bottom:12px;}
+  .awave .explain-item p{color:var(--ink-dim);font-size:14.5px;}
+  .awave .explain-item.brand{background:linear-gradient(160deg, var(--panel-2), var(--panel));}
+  .awave .explain-item.brand .explain-tag{color:var(--verify);}
+  .awave .explain-item.brand p{color:var(--ink);}
+
   /* ---------- custo real (funcionário vs Awave) ---------- */
   .awave .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
   .awave .cost-col{background:var(--panel);padding:30px;}
@@ -475,6 +484,7 @@
     .awave .fit-grid{grid-template-columns:1fr;}
     .awave .alt-grid{grid-template-columns:1fr;}
     .awave .cost-grid{grid-template-columns:1fr;}
+    .awave .explain-grid{grid-template-columns:1fr;}
     .awave .enemy-grid{grid-template-columns:1fr;}
     .awave .step{grid-template-columns:36px 1fr;}
     .awave .step-visual{display:none;}
@@ -572,11 +582,35 @@
   <!-- O QUE É, EM TERMOS SIMPLES -->
   <section class="explainer">
     <div class="wrap" data-reveal>
-      <p class="eyebrow">Antes de tudo, o que é o Awave</p>
-      <h2 style="margin-bottom:24px;max-width:36ch;">Explicando simples: é um sistema. E ninguém aí dentro é uma pessoa.</h2>
-      <p style="color:var(--ink-dim);font-size:17px;max-width:70ch;margin-bottom:16px;">Você entra num painel pelo computador ou celular, como se fosse um site. Lá dentro tem uma equipe: um cuida do tráfego pago, outro escreve os textos, outro faz as artes, outro olha os contratos, outro responde no WhatsApp, outro organiza suas reuniões.</p>
-      <p style="color:var(--ink-dim);font-size:17px;max-width:70ch;margin-bottom:16px;"><strong style="color:var(--ink)">Nenhum deles é uma pessoa.</strong> Todos são inteligência artificial, funcionando o dia inteiro, todos os dias. Você conversa com eles por texto ou por voz, do jeito que conversaria com um funcionário.</p>
-      <p style="color:var(--ink-dim);font-size:17px;max-width:70ch;">E antes de qualquer um deles fazer algo que afeta seu negócio de verdade (enviar mensagem, publicar um post, mudar uma campanha), ele te avisa e espera você aprovar. É essa a proposta: um time inteiro trabalhando pra você, sem nunca agir pelas suas costas.</p>
+      <p class="eyebrow">Antes de tudo</p>
+      <h2 style="margin-bottom:14px;max-width:38ch;">Tudo que você precisa saber sobre o Awave, em 6 respostas simples</h2>
+      <p style="color:var(--ink-dim);font-size:16.5px;max-width:70ch;margin-bottom:36px;">Sem enrolação, sem termo técnico. Se você sabe ler, você entende o Awave depois desses 6 parágrafos.</p>
+      <div class="explain-grid">
+        <div class="explain-item">
+          <span class="explain-tag">O que é</span>
+          <p>Um sistema de inteligência artificial. Você entra por um painel, pelo computador ou celular, como se fosse um site. Lá dentro tem uma equipe, mas nenhum deles é uma pessoa: todos são IA, trabalhando o dia inteiro, todos os dias.</p>
+        </div>
+        <div class="explain-item">
+          <span class="explain-tag">Para quem é</span>
+          <p>Pra empresário e dono de negócio que já vende ou atende pela internet: clínica, loja, escritório de serviço, prestador que atende empresas, curso, consultoria. Não importa o segmento. Se você usa tráfego pago, WhatsApp ou faz contrato, o Awave serve.</p>
+        </div>
+        <div class="explain-item">
+          <span class="explain-tag">Quando faz sentido usar</span>
+          <p>Quando você está pagando caro por resultado que não vê, perdendo venda por demora no atendimento, ou dependendo de um processo que só existe na sua cabeça (ou na de um funcionário que pode sair a qualquer hora).</p>
+        </div>
+        <div class="explain-item">
+          <span class="explain-tag">Onde ele atua</span>
+          <p>Tráfego pago, textos e copy, design e artes, contratos e jurídico, atendimento no WhatsApp, e organização das suas reuniões. Você escolhe quais dessas frentes ativar, não precisa contratar todas de uma vez.</p>
+        </div>
+        <div class="explain-item">
+          <span class="explain-tag">Como resolve na prática</span>
+          <p>Você conversa com o time por texto ou voz, do jeito que falaria com um funcionário. Cada especialista olha os dados reais do seu negócio e já prepara a ação, mas espera sua aprovação antes de qualquer coisa sair do papel.</p>
+        </div>
+        <div class="explain-item brand">
+          <span class="explain-tag">Resumindo</span>
+          <p>O Awave não é agência, não é funcionário, não é ferramenta solta. É um time de IA que cobre tráfego, copy, design, jurídico, atendimento e reuniões, pra quem quer controle com execução. Não é pra quem quer terceirizar e esquecer do assunto. É pra quem quer um time que nunca cansa, sempre avisa antes de agir, e fica mais esperto sobre o seu negócio a cada dia.</p>
+        </div>
+      </div>
     </div>
   </section>
 
