@@ -169,7 +169,7 @@
   .awave .cta-note{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:12px;}
 
   /* ---------- hero + canvas ---------- */
-  .awave .hero{padding-top:72px;overflow:hidden;}
+  .awave .hero{padding-top:72px;overflow:hidden;position:relative;}
   .awave .hero::before{
     content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
     background:
@@ -193,6 +193,15 @@
       radial-gradient(ellipse 420px 260px at 88% 8%, rgba(56,214,245,0.10), transparent 70%);
   }
   .awave .wave-bg{position:absolute;inset:-40px -28px auto -28px;width:calc(100% + 56px);height:420px;opacity:.55;pointer-events:none;}
+  .awave .particles-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+
+  /* ---------- marquee ticker ---------- */
+  .awave .marquee{overflow:hidden;white-space:nowrap;background:var(--void-2);border-bottom:1px solid var(--line-soft);position:relative;z-index:3;}
+  .awave .marquee-track{display:inline-flex;width:max-content;animation:marquee 28s linear infinite;}
+  .awave .marquee-track span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;padding:11px 22px;white-space:nowrap;display:inline-flex;align-items:center;gap:22px;}
+  .awave .marquee-track span::after{content:"•";color:var(--accent);}
+  @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){.awave .marquee-track{animation:none;}}
   .awave .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;position:relative;z-index:1;}
   .awave .hero h1{font-size:clamp(32px,4.2vw,50px);line-height:1.12;}
   .awave .hero .lede{margin-top:22px;font-size:17.5px;color:var(--ink-dim);max-width:54ch;}
@@ -485,8 +494,15 @@
     <a href="#agendar" class="btn-ghost">Conversa sem compromisso</a>
   </div>
 
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>AWAVE</span><span>AGÊNCIA DE IA</span><span>SEM RISCO</span><span>SEU PRÓPRIO TIME</span><span>AWAVE</span><span>AGÊNCIA DE IA</span><span>SEM RISCO</span><span>SEU PRÓPRIO TIME</span>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero">
+    <canvas class="particles-bg" id="aw-particles" aria-hidden="true"></canvas>
     <canvas class="wave-bg" id="aw-wave" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div>
@@ -1151,6 +1167,75 @@
     size();
     window.addEventListener('resize', size);
     frame();
+  }
+
+  // ---- hero particle network ----
+  var pCanvas = document.getElementById('aw-particles');
+  if(pCanvas && pCanvas.getContext){
+    var pctx = pCanvas.getContext('2d');
+    var pReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pdpr = Math.min(window.devicePixelRatio || 1, 2);
+    var particles = [];
+    var PCOUNT = 46;
+    var LINK_DIST = 130;
+
+    function psize(){
+      var r = pCanvas.getBoundingClientRect();
+      pCanvas.width = r.width * pdpr;
+      pCanvas.height = r.height * pdpr;
+      pctx.setTransform(pdpr, 0, 0, pdpr, 0, 0);
+    }
+
+    function pinit(){
+      var r = pCanvas.getBoundingClientRect();
+      particles = [];
+      for(var i = 0; i < PCOUNT; i++){
+        particles.push({
+          x: Math.random() * r.width,
+          y: Math.random() * r.height,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18
+        });
+      }
+    }
+
+    function pframe(){
+      var r = pCanvas.getBoundingClientRect();
+      pctx.clearRect(0, 0, r.width, r.height);
+      for(var i = 0; i < particles.length; i++){
+        var p = particles[i];
+        if(!pReduced){ p.x += p.vx; p.y += p.vy; }
+        if(p.x < 0){ p.x = r.width; } else if(p.x > r.width){ p.x = 0; }
+        if(p.y < 0){ p.y = r.height; } else if(p.y > r.height){ p.y = 0; }
+      }
+      for(var i = 0; i < particles.length; i++){
+        for(var j = i + 1; j < particles.length; j++){
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if(dist < LINK_DIST){
+            pctx.strokeStyle = 'rgba(62,123,250,' + (0.22 * (1 - dist / LINK_DIST)) + ')';
+            pctx.lineWidth = 1;
+            pctx.beginPath();
+            pctx.moveTo(a.x, a.y);
+            pctx.lineTo(b.x, b.y);
+            pctx.stroke();
+          }
+        }
+      }
+      for(var i = 0; i < particles.length; i++){
+        pctx.beginPath();
+        pctx.arc(particles[i].x, particles[i].y, 1.6, 0, Math.PI * 2);
+        pctx.fillStyle = 'rgba(139,214,245,0.75)';
+        pctx.fill();
+      }
+      if(!pReduced){ requestAnimationFrame(pframe); }
+    }
+
+    psize();
+    pinit();
+    window.addEventListener('resize', function(){ psize(); pinit(); });
+    pframe();
   }
 })();
 </script>
