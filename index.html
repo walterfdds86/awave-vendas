@@ -91,21 +91,6 @@
   .awave .mini-row:first-child{border-top:none;}
   .awave .mini-num{font-family:var(--mono);font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums;}
 
-  /* ---------- narrativa (cards empilhados) ---------- */
-  .awave .narrative-cards{display:flex;flex-direction:column;gap:18px;margin-top:8px;}
-  .awave .ncard{border-radius:var(--radius-lg);padding:34px 32px;position:relative;overflow:hidden;}
-  .awave .ncard .nnum{font-family:var(--mono);font-size:13px;font-weight:700;opacity:.8;display:block;margin-bottom:16px;color:#fff;}
-  .awave .ncard h3{font-size:clamp(20px,2.6vw,28px);line-height:1.3;margin:0 0 20px;color:#fff;font-family:var(--sans-display);font-weight:600;letter-spacing:-.02em;}
-  .awave .ncard .nbar{display:block;width:44px;height:3px;border-radius:2px;background:rgba(255,255,255,.4);}
-  .awave .ncard.n1{background:linear-gradient(135deg, var(--brand-from), var(--brand-to));}
-  .awave .ncard.n2{background:linear-gradient(135deg, var(--panel-2), var(--brand-from) 150%);}
-  .awave .ncard.n3{background:linear-gradient(135deg, var(--brand-to), var(--panel-2) 140%);}
-  .awave .ncard.n4{background:linear-gradient(135deg, var(--panel-2), var(--panel));border:1px solid rgba(62,123,250,.25);box-shadow:0 20px 50px -25px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.04);}
-  .awave .ncard.n4 .nnum{color:var(--accent);opacity:1;}
-  .awave .ncard.n4 h3{color:var(--ink);}
-  .awave .ncard.n4 h3 em{color:var(--accent);font-style:normal;}
-  .awave .ncard.n4 .nbar{background:var(--accent);}
-
   /* ---------- barra de números ---------- */
   .awave .statbar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:8px;text-align:center;}
   .awave .stat-block{padding:18px 8px;}
@@ -275,37 +260,31 @@
   .awave .chat-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);align-self:flex-end;}
   .awave .chat-gap{align-self:center;font-family:var(--mono);font-size:10.5px;color:var(--danger);margin-top:4px;}
 
-  /* ---------- hire compare (alternativas) ---------- */
-  .awave .hire-compare{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft);}
-  .awave .hire-col{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;}
-  .awave .hire-num{font-family:var(--sans-display);font-size:26px;font-weight:700;color:var(--ink-dim);}
-  .awave .hire-col.brand .hire-num{background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .awave .hire-col span:not(.hire-num){font-size:12px;color:var(--ink-dim);}
-  .awave .hire-col .hire-sub{font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
-  .awave .hire-vs{font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
-
-  /* ---------- niche note ---------- */
-  .awave .niche-note{margin-top:32px;padding-top:32px;border-top:1px solid var(--line-soft);}
-  .awave .niche-note p{color:var(--ink-dim);font-size:15px;max-width:70ch;margin-bottom:18px;}
-  .awave .niche-note strong{color:var(--ink);}
-  .awave .niche-tags{display:flex;flex-wrap:wrap;gap:10px;}
-  .awave .niche-tags span{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);border:1px solid var(--line);border-radius:20px;padding:7px 14px 7px 10px;}
-  .awave .niche-tags svg{width:15px;height:15px;flex:none;color:var(--accent);}
-
   /* ---------- alternatives ---------- */
-  .awave .alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;}
+  .awave .alt-grid{display:grid;grid-template-columns:1fr;max-width:600px;margin-top:40px;}
   .awave .alt-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-md);padding:26px;}
   .awave .alt-card h3{font-size:17px;font-weight:600;margin-bottom:12px;font-family:var(--sans-display);}
   .awave .alt-card p{color:var(--ink-dim);font-size:14.5px;}
 
-  /* ---------- explicador em 6 respostas ---------- */
-  .awave .explain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
-  .awave .explain-item{background:var(--panel);padding:28px;}
-  .awave .explain-tag{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;margin-bottom:12px;}
-  .awave .explain-item p{color:var(--ink-dim);font-size:14.5px;}
-  .awave .explain-item.brand{background:linear-gradient(160deg, var(--panel-2), var(--panel));}
-  .awave .explain-item.brand .explain-tag{color:var(--verify);}
-  .awave .explain-item.brand p{color:var(--ink);}
+  /* ---------- explicador em 6 respostas (peso visual: hero > grade > conclusão) ---------- */
+  .awave .explain-sub{color:var(--ink-dim);font-size:16.5px;max-width:70ch;margin-bottom:40px;}
+  .awave .explain-num{font-family:var(--sans-display);font-weight:700;color:var(--accent);flex:none;line-height:1;}
+  .awave .explain-tag{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;margin-bottom:10px;}
+  .awave .explain-item p,.awave .explain-hero p{color:var(--ink-dim);font-size:14.5px;}
+
+  .awave .explain-hero{display:flex;gap:26px;align-items:flex-start;background:linear-gradient(135deg, var(--panel-2), var(--panel));border:1px solid rgba(62,123,250,.35);border-bottom:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:38px;}
+  .awave .explain-hero .explain-num{font-size:44px;background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .awave .explain-hero .explain-tag{font-size:13px;color:var(--ink);opacity:.75;}
+  .awave .explain-hero p{font-size:18.5px;color:var(--ink);max-width:62ch;}
+
+  .awave .explain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-left:1px solid var(--line);border-right:1px solid var(--line);overflow:hidden;}
+  .awave .explain-item{background:var(--panel);padding:30px;display:flex;gap:16px;}
+  .awave .explain-item .explain-num{font-size:22px;}
+
+  .awave .explain-conclusion{display:flex;gap:26px;align-items:flex-start;background:var(--brand-gradient);border-radius:0 0 var(--radius-lg) var(--radius-lg);padding:38px;}
+  .awave .explain-conclusion .explain-num{font-size:22px;color:rgba(255,255,255,.6);}
+  .awave .explain-conclusion .explain-tag{color:#fff;opacity:.8;}
+  .awave .explain-conclusion p{color:#fff;font-size:16.5px;max-width:70ch;}
 
   /* ---------- custo real (funcionário vs Awave) ---------- */
   .awave .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
@@ -378,16 +357,6 @@
   .awave .step h3{font-size:18px;font-weight:600;margin-bottom:6px;font-family:var(--sans-display);}
   .awave .step p{color:var(--ink-dim);font-size:14px;max-width:46ch;}
   .awave .step-visual{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);}
-
-  /* ---------- authority ---------- */
-  .awave .authority-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start;}
-  .awave .authority p{font-size:16.5px;color:var(--ink-dim);margin-bottom:16px;}
-  .awave .authority strong{color:var(--ink);font-weight:700;}
-  .awave .ledger{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-md);padding:6px;}
-  .awave .ledger .row{display:flex;justify-content:space-between;align-items:center;padding:17px;border-bottom:1px solid var(--line-soft);}
-  .awave .ledger .row:last-child{border-bottom:none;}
-  .awave .ledger .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:22px;color:var(--accent);font-weight:600;}
-  .awave .ledger .lbl{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:right;max-width:150px;}
 
   /* ---------- delivery ---------- */
   .awave .delivery-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
@@ -478,11 +447,10 @@
   @media (max-width:860px){
     .awave section{padding:60px 0;}
     .awave .hero h1{font-size:26px;line-height:1.28;}
-    .awave .hero-grid,.awave .authority-grid,.awave .delivery-grid,.awave .offer-grid,.awave .final-grid,.awave .gate-grid,.awave .brain-grid{grid-template-columns:1fr;}
+    .awave .hero-grid,.awave .delivery-grid,.awave .offer-grid,.awave .final-grid,.awave .gate-grid,.awave .brain-grid{grid-template-columns:1fr;}
     .awave .team-grid{grid-template-columns:1fr;}
     .awave .eq-row{grid-template-columns:1fr;}
     .awave .fit-grid{grid-template-columns:1fr;}
-    .awave .alt-grid{grid-template-columns:1fr;}
     .awave .cost-grid{grid-template-columns:1fr;}
     .awave .explain-grid{grid-template-columns:1fr;}
     .awave .enemy-grid{grid-template-columns:1fr;}
@@ -584,61 +552,52 @@
     <div class="wrap" data-reveal>
       <p class="eyebrow">Antes de tudo</p>
       <h2 style="margin-bottom:14px;max-width:38ch;">Tudo que você precisa saber sobre o Awave, em 6 respostas simples</h2>
-      <p style="color:var(--ink-dim);font-size:16.5px;max-width:70ch;margin-bottom:36px;">Sem enrolação, sem termo técnico. Se você sabe ler, você entende o Awave depois desses 6 parágrafos.</p>
-      <div class="explain-grid">
-        <div class="explain-item">
+      <p class="explain-sub">Sem enrolação, sem termo técnico. Se você sabe ler, você entende o Awave depois disso.</p>
+
+      <div class="explain-hero">
+        <span class="explain-num">01</span>
+        <div>
           <span class="explain-tag">O que é</span>
           <p>Um sistema de inteligência artificial. Você entra por um painel, pelo computador ou celular, como se fosse um site. Lá dentro tem uma equipe, mas nenhum deles é uma pessoa: todos são IA, trabalhando o dia inteiro, todos os dias.</p>
         </div>
+      </div>
+
+      <div class="explain-grid">
         <div class="explain-item">
-          <span class="explain-tag">Para quem é</span>
-          <p>Pra empresário e dono de negócio que já vende ou atende pela internet: clínica, loja, escritório de serviço, prestador que atende empresas, curso, consultoria. Não importa o segmento. Se você usa tráfego pago, WhatsApp ou faz contrato, o Awave serve.</p>
+          <span class="explain-num">02</span>
+          <div>
+            <span class="explain-tag">Para quem é</span>
+            <p>Pra empresário e dono de negócio que já vende ou atende pela internet: clínica, loja, escritório de serviço, prestador que atende empresas, curso, consultoria. Não importa o segmento. Se você usa tráfego pago, WhatsApp ou faz contrato, o Awave serve.</p>
+          </div>
         </div>
         <div class="explain-item">
-          <span class="explain-tag">Quando faz sentido usar</span>
-          <p>Quando você está pagando caro por resultado que não vê, perdendo venda por demora no atendimento, ou dependendo de um processo que só existe na sua cabeça (ou na de um funcionário que pode sair a qualquer hora).</p>
+          <span class="explain-num">03</span>
+          <div>
+            <span class="explain-tag">Quando faz sentido usar</span>
+            <p>Quando você está pagando caro por resultado que não vê, perdendo venda por demora no atendimento, ou dependendo de um processo que só existe na sua cabeça (ou na de um funcionário que pode sair a qualquer hora).</p>
+          </div>
         </div>
         <div class="explain-item">
-          <span class="explain-tag">Onde ele atua</span>
-          <p>Tráfego pago, textos e copy, design e artes, contratos e jurídico, atendimento no WhatsApp, e organização das suas reuniões. Você escolhe quais dessas frentes ativar, não precisa contratar todas de uma vez.</p>
+          <span class="explain-num">04</span>
+          <div>
+            <span class="explain-tag">Onde ele atua</span>
+            <p>Tráfego pago, textos e copy, design e artes, contratos e jurídico, atendimento no WhatsApp, e organização das suas reuniões. Você escolhe quais dessas frentes ativar, não precisa contratar todas de uma vez.</p>
+          </div>
         </div>
         <div class="explain-item">
-          <span class="explain-tag">Como resolve na prática</span>
-          <p>Você conversa com o time por texto ou voz, do jeito que falaria com um funcionário. Cada especialista olha os dados reais do seu negócio e já prepara a ação, mas espera sua aprovação antes de qualquer coisa sair do papel.</p>
-        </div>
-        <div class="explain-item brand">
-          <span class="explain-tag">Resumindo</span>
-          <p>O Awave não é agência, não é funcionário, não é ferramenta solta. É um time de IA que cobre tráfego, copy, design, jurídico, atendimento e reuniões, pra quem quer controle com execução. Não é pra quem quer terceirizar e esquecer do assunto. É pra quem quer um time que nunca cansa, sempre avisa antes de agir, e fica mais esperto sobre o seu negócio a cada dia.</p>
+          <span class="explain-num">05</span>
+          <div>
+            <span class="explain-tag">Como resolve na prática</span>
+            <p>Você conversa com o time por texto ou voz, do jeito que falaria com um funcionário. Cada especialista olha os dados reais do seu negócio e já prepara a ação, mas espera sua aprovação antes de qualquer coisa sair do papel.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- NARRATIVA -->
-  <section class="narrative">
-    <div class="wrap" data-reveal>
-      <p class="eyebrow">O time que você sempre quis ter</p>
-      <h2 style="margin-bottom:28px;max-width:34ch;">Imagine ter uma equipe que nunca tira férias, nunca falta, nunca sai da empresa, e ainda fica mais esperta a cada dia que passa</h2>
-      <div class="narrative-cards">
-        <div class="ncard n1">
-          <span class="nnum">01</span>
-          <h3>Funcionário bom pede aumento, tira férias e, um dia, vai embora.</h3>
-          <span class="nbar"></span>
-        </div>
-        <div class="ncard n2">
-          <span class="nnum">02</span>
-          <h3>Seu time de IA não. Trabalha todo dia, sem reclamar e sem pedir folga.</h3>
-          <span class="nbar"></span>
-        </div>
-        <div class="ncard n3">
-          <span class="nnum">03</span>
-          <h3>E não para por aí: a cada mês, ele conhece mais o seu negócio, seus clientes e do jeito que você trabalha.</h3>
-          <span class="nbar"></span>
-        </div>
-        <div class="ncard n4">
-          <span class="nnum">04</span>
-          <h3>Você não está contratando gente. Está construindo um time que só fica <em>melhor</em> com o tempo.</h3>
-          <span class="nbar"></span>
+      <div class="explain-conclusion">
+        <span class="explain-num">06</span>
+        <div>
+          <span class="explain-tag">Resumindo</span>
+          <p>O Awave não é agência, não é funcionário, não é ferramenta solta. É um time de IA que cobre tráfego, copy, design, jurídico, atendimento e reuniões, pra quem quer controle com execução. Não é pra quem quer terceirizar e esquecer do assunto. É pra quem quer um time que nunca cansa, sempre avisa antes de agir, e fica mais esperto sobre o seu negócio a cada dia.</p>
         </div>
       </div>
     </div>
@@ -648,6 +607,7 @@
   <section class="statbar">
     <div class="wrap" data-reveal>
       <p class="eyebrow" style="justify-content:center;">Awave em números</p>
+      <p style="color:var(--ink-dim);font-size:15.5px;max-width:60ch;margin:0 auto 32px;text-align:center;">Há 8 anos vemos o mesmo padrão: o plano raramente é o problema. É a falta de quem execute sem sumir com o controle.</p>
       <div class="statbar-grid">
         <div class="stat-block"><span class="stat-num">30+</span><span class="stat-lbl">empresas atendidas</span></div>
         <div class="stat-block"><span class="stat-num">8 anos</span><span class="stat-lbl">de mercado</span></div>
@@ -701,18 +661,6 @@
           </ul>
         </div>
       </div>
-
-      <div class="niche-note">
-        <p><strong>Não importa o que você vende:</strong> clínica, loja, escritório de serviço, prestador B2B, curso ou consultoria. O Awave trabalha em cima de processos que toda empresa tem: tráfego, atendimento, contrato, reunião. Quem muda é o conteúdo; o mecanismo é o mesmo. Na nossa conversa inicial, adaptamos pro seu caso específico.</p>
-        <div class="niche-tags">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Clínicas e consultórios</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Lojas e e-commerce</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>Escritórios de serviço</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a3 3 0 0 0 4.5.9l3-3a3 3 0 1 0-4.24-4.24l-1.5 1.5"/><path d="M15 12a3 3 0 0 0-4.5-.9l-3 3a3 3 0 1 0 4.24 4.24l1.5-1.5"/></svg>Prestadores B2B</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Infoprodutos e cursos</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6"/><path d="M6 10v9a1 1 0 0 0 1 1h4v-5h2v5h4a1 1 0 0 0 1-1v-9"/></svg>Imobiliárias</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -747,15 +695,6 @@
           <h3>"Por que não uso só o ChatGPT?"</h3>
           <p>Funciona bem pra um texto avulso. Mas não guarda o histórico do seu negócio, não conecta no ClickUp ou Meta Ads sozinho. É você quem monta e cola cada etapa, toda vez.</p>
           <div class="agent-snippet">💬 "cria uma campanha pro produto X" → resposta genérica, sem contexto do seu negócio, sem ir pra lugar nenhum</div>
-        </div>
-        <div class="alt-card">
-          <h3>"Por que não contrato alguém?"</h3>
-          <p>Um funcionário resolve uma função por vez, tira férias, falta quando pega uma gripe, e um dia pode simplesmente sair, levando o que aprendeu com ele. Pra cobrir as seis frentes do Awave, seria uma folha de vários salários, treinamento do zero toda vez que alguém troca de emprego, e o risco de recomeçar quando a pessoa sai.</p>
-          <div class="hire-compare">
-            <div class="hire-col"><span class="hire-num">1</span><span>funcionário</span><span class="hire-sub">1 função</span></div>
-            <span class="hire-vs">vs</span>
-            <div class="hire-col brand"><span class="hire-num">6</span><span>especialistas</span><span class="hire-sub">1 fluxo só</span></div>
-          </div>
         </div>
       </div>
     </div>
@@ -796,10 +735,8 @@
       <div>
         <p class="eyebrow">O freio central</p>
         <h2 style="margin-bottom:20px;">Nenhum especialista age sozinho quando a ação não tem volta</h2>
-        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação (ler uma métrica, listar um evento) roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real, como enviar e-mail, criar tarefa, publicar peça ou responder cliente, pára numa fila de aprovação antes de acontecer.</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Vale pro contrato que o Alan analisou, pra tarefa que a Secretária sugeriu, pra resposta que a Sofia rascunhou. Você aprova, ajusta ou recusa, sempre antes, nunca depois do estrago.</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Cada aprovação mostra exatamente o que vai mudar, sem letra miúda escondida atrás. E tem freio automático embutido: no tráfego, por exemplo, o Rui nunca sobe orçamento mais que 50% de uma vez, nem mexe numa campanha que ainda está aprendendo.</p>
-        <p style="color:var(--ink-dim);font-size:16.5px;">E isso não vira plantão: as sugestões ficam esperando, sem prazo de validade. Você revisa quando fizer sentido pra sua rotina, todo dia ou uma vez por semana.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;margin-bottom:14px;">Consultar informação roda direto, sem travar seu time. Mas qualquer ação que mude algo no mundo real (enviar mensagem, publicar peça, criar tarefa) espera sua aprovação antes de acontecer, sempre antes, nunca depois do estrago. E tem freio automático embutido: no tráfego, por exemplo, o Rui nunca sobe orçamento mais que 50% de uma vez, nem mexe numa campanha que ainda está aprendendo.</p>
+        <p style="color:var(--ink-dim);font-size:16.5px;">Isso não vira plantão. As sugestões ficam esperando, sem prazo de validade: você revisa quando fizer sentido pra sua rotina, todo dia ou uma vez por semana.</p>
       </div>
       <div class="gate-mock hud-frame">
         <p class="kind">tool_action · pendente</p>
@@ -959,24 +896,6 @@
             <div class="mini-row"><span>Téo</span><span class="mini-num">R$ 21,90</span></div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AUTORIDADE -->
-  <section class="authority">
-    <div class="wrap authority-grid" data-reveal>
-      <div>
-        <p class="eyebrow">Por que confiar num sistema</p>
-        <h2 style="margin-bottom:22px;">A maioria dos negócios não tem problema de estratégia. Tem problema de quem executa com controle.</h2>
-        <p>Há 8 anos vemos o mesmo padrão: o plano raramente é o problema. É a falta de quem execute sem sumir com o controle.</p>
-        <p>O Awave nasceu desse padrão. Um time que executa de verdade, com você sempre no controle de cada ação.</p>
-      </div>
-      <div class="ledger">
-        <div class="row"><span class="num">30+</span><span class="lbl">empresas atendidas</span></div>
-        <div class="row"><span class="num">8 anos</span><span class="lbl">de mercado</span></div>
-        <div class="row"><span class="num">R$100k+</span><span class="lbl">geridos em tráfego pago</span></div>
-        <div class="row"><span class="num">R$10mi+</span><span class="lbl">gerados em vendas pra clientes</span></div>
       </div>
     </div>
   </section>
